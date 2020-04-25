@@ -30,8 +30,15 @@ methods: {
  lunbo(){
     let api = '/hot_tag_list.json'
     this.axios.get(api).then((response) => {
-      this.imgs = response.data.data;
-    })
+      if(response.status === 200){
+         this.imgs = response.data.data; 
+         return;
+      } 
+    }).catch(function (error) {
+          //  console.log(error+'服务器错误');
+    });
+
+
     }
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
@@ -62,30 +69,27 @@ mounted() {
     height: 100%;
     
   }
-  /* 中文文字 */
-#title{
+
+#title,#tile{
    position: absolute;
     width: 700px;
     height: 80px;
-    top: 30%;
     left: 50%;
     color: white;
     text-align: center;
     font-size: 45px;
     line-height: 80px;
-    transform: translate(-50%, -30%);
+}
+/* 中文文字 */
+#title{
+    top: 35%;
+    font-size: 45px;
+    transform: translate(-50%, -35%);
 }
 /* 英文文字 */
 #tile{
-   position: absolute;
-    width: 700px;
-    height: 80px;
-    top: 45%;
-    left: 50%;
-    color: white;
-    text-align: center;
+    top: 50%;
     font-size: 20px;
-    line-height: 80px;
-    transform: translate(-50%, -45%);
+    transform: translate(-50%, -50%);
 }
 </style>

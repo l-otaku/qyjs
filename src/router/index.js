@@ -14,7 +14,7 @@ const routes = [
 	{ path: "/", component: AppBar ,redirect: '/AppBar/Home'},
     { path: '/AppBar', component: AppBar ,redirect: '/AppBar/Home' ,
 			children:[
-				{path: 'Home', component: Home },
+				{path: 'Home', component: Home},
 				{path: 'AboutUs', component: AboutUs},
 				{path: 'Projects', component: Projects},
 				{path: 'News', component: News},
