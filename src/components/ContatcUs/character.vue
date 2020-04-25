@@ -26,42 +26,13 @@
 </template>
 
 <script>
-//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-//例如：import 《组件名称》 from '《组件路径》';
-
 export default {
-  name: '',
-//import引入的组件需要注入到对象中才能使用
-components: {},
 data() {
 //这里存放数据
 return {
 
 };
 },
-//监听属性 类似于data概念
-computed: {},
-//监控data中的数据变化
-watch: {},
-//方法集合
-methods: {
-
-},
-//生命周期 - 创建完成（可以访问当前this实例）
-created() {
-
-},
-//生命周期 - 挂载完成（可以访问DOM元素）
-mounted() {
-
-},
-beforeCreate() {}, //生命周期 - 创建之前
-beforeMount() {}, //生命周期 - 挂载之前
-beforeUpdate() {}, //生命周期 - 更新之前
-updated() {}, //生命周期 - 更新之后
-beforeDestroy() {}, //生命周期 - 销毁之前
-destroyed() {}, //生命周期 - 销毁完成
-activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 }
 </script>
 <style  scoped>
@@ -71,6 +42,7 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
     position: relative;
     height: 100%;
     padding-top:50px;
+    background: #f7f7f7a6;
 }
 .characters{
     position: relative;
@@ -101,20 +73,31 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
     flex-flow: column-reverse;
 }
 .character_txt ul li{
-   height: 50px;
+    height: 50px;
     margin-top: 30px;
     text-align: center;
     line-height: 50px;
-    background: #a4ab9e;
+    box-shadow: 12px;
+    background: #e6e6e6;
+    border-radius: 10px;
     box-shadow: 0 0 7px #f5f5f5;
+    transition: all 0.5;
+}
+.character_txt ul li:hover{
+   cursor: pointer;
+   transform: scale(1.02);
 }
 .character_address{
     width: 800px;
     height: 100px;
     top: 30px;
     position: relative;
+    color: #867e7eba;
 }
 .character_address span:nth-child(1){
-    font-size: 22px;
+   font-size: 22px;
+    position: relative;
+    top: -10px;
+    left: 11px;
 }
 </style>
