@@ -17,7 +17,9 @@
      </div>
     </div> 
   </header>
+  <transition name="fade">
   <router-view></router-view>
+    </transition>
 </div>
 </template>
 
@@ -117,4 +119,11 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
     color: coral;
 }
 
+
+.fade-enter-active, .fade-leave-avtive {
+    transition: opacity 1s
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0
+}
 </style>

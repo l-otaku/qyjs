@@ -97,10 +97,6 @@ export default {
         this.oneArticle = this.arrs.slice(0,2)
         this.towArticle = this.arrs.slice(2,4)
         this.threeArticle = this.arrs.slice(4,6)
-        // // this.oneArticle = this.arrs.slice(1,3)
-        // console.log(this.arrs.slice(0,2))
-        // console.log(this.arrs.slice(2,4))
-        // console.log(this.arrs.slice(4,6))
       })
       .catch(function(error) {});
   },
@@ -150,6 +146,10 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: fill;
+  transition: 1s all;
+}
+.project_img img:hover{
+  transform: scale(1.02);
 }
 .project_text {
   width: 195px;
