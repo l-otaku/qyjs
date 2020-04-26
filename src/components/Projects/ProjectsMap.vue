@@ -8,28 +8,46 @@
             <img :src="item.cover" alt />
             <div class="project_text">
               <p>{{item.title}}</p>
-              <p><span>项目地点:</span>{{item.ProjectLocation}}</p>
-              <p> <span>项目内容:</span> {{item.description}}</p>
+              <p>
+                <span>项目地点:</span>
+                {{item.ProjectLocation}}
+              </p>
+              <p>
+                <span>项目内容:</span>
+                {{item.description}}
+              </p>
             </div>
           </div>
         </li>
         <li class="ProjectsMap_show">
-           <div class="project_img" v-for="item in towArticle" :key="item.id">
+          <div class="project_img" v-for="item in towArticle" :key="item.id">
             <img :src="item.cover" alt />
             <div class="project_text">
               <p>{{item.title}}</p>
-              <p><span>项目地点:</span>{{item.ProjectLocation}}</p>
-              <p> <span>项目内容:</span> {{item.description}}</p>
+              <p>
+                <span>项目地点:</span>
+                {{item.ProjectLocation}}
+              </p>
+              <p>
+                <span>项目内容:</span>
+                {{item.description}}
+              </p>
             </div>
           </div>
         </li>
         <li class="ProjectsMap_show">
-           <div class="project_img" v-for="item in threeArticle" :key="item.id">
+          <div class="project_img" v-for="item in threeArticle" :key="item.id">
             <img :src="item.cover" alt />
             <div class="project_text">
               <p>{{item.title}}</p>
-              <p><span>项目地点:</span>{{item.ProjectLocation}}</p>
-              <p> <span>项目内容:</span> {{item.description}}</p>
+              <p>
+                <span>项目地点:</span>
+                {{item.ProjectLocation}}
+              </p>
+              <p>
+                <span>项目内容:</span>
+                {{item.description}}
+              </p>
             </div>
           </div>
         </li>
@@ -54,10 +72,10 @@ export default {
     //这里存放数据
     return {
       index: 0,
-      arrs:[]  , //请求的数据
-      oneArticle:[] , //截取数据的两条
-      towArticle:[] , //截取数据的两条
-      threeArticle:[]  //截取数据的两条
+      arrs: [], //请求的数据
+      oneArticle: [], //截取数据的两条
+      towArticle: [], //截取数据的两条
+      threeArticle: [] //截取数据的两条
     };
   },
   //监听属性 类似于data概念
@@ -82,23 +100,26 @@ export default {
         Ulli[i].className = "ProjectsMap_show";
       }
       Ulli[index].className = "ProjectsMap_show act";
+    },
+    setprojiects() {
+      let api = "/Projectsimgs.json";
+      this.axios
+        .get(api)
+        .then(res => {
+          // console.log(res.data.data);
+          this.arrs = res.data.data;
+          this.oneArticle = this.arrs.slice(0, 2);
+          this.towArticle = this.arrs.slice(2, 4);
+          this.threeArticle = this.arrs.slice(4, 6);
+        })
+        .catch(function(error) {});
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    let api = "/Projectsimgs.json";
-    this.axios
-      .get(api)
-      .then(res => {
-        // console.log(res.data.data);
-        this.arrs = res.data.data
-        this.oneArticle = this.arrs.slice(0,2)
-        this.towArticle = this.arrs.slice(2,4)
-        this.threeArticle = this.arrs.slice(4,6)
-      })
-      .catch(function(error) {});
+    this.setprojiects()//请求数据
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
@@ -148,7 +169,7 @@ export default {
   object-fit: fill;
   transition: 1s all;
 }
-.project_img img:hover{
+.project_img img:hover {
   transform: scale(1.02);
 }
 .project_text {
