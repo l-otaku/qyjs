@@ -27,77 +27,91 @@
 
 <script>
 export default {
-data() {
-//这里存放数据
-return {
-
+  data() {
+    //这里存放数据
+    return {};
+  }
 };
-},
-}
 </script>
 <style  scoped>
-.character{
-    width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    height: 100%;
-    padding-top:50px;
-    background: #f7f7f7a6;
+.character {
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  padding-top: 50px;
+  background: #f7f7f7a6;
 }
-.characters{
-    position: relative;
-    height: 100%;
-    display: flex;
+.characters {
+  position: relative;
+  height: 100%;
+  display: flex;
 }
-.character_logo{
-    height: 350px;
-    float: left;
-    flex: 1;
+.character_logo {
+  height: 350px;
+  float: left;
+  flex: 1;
 }
-.character_logoimg{
-    width: 200px;
-    height: 200px;
-    position: relative;
-    left: 25%;
-    top: 50%;
-    transform: translate(-25%,-50%);
+.character_logoimg {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  left: 25%;
+  top: 50%;
+  transform: translate(-25%, -50%);
 }
-.character_logoimg img{
-     width: 100%;
-     height: 100%;
+.character_logoimg img {
+  width: 100%;
+  height: 100%;
 }
-.character_txt{
-    height: 350px;
-    float: left;
-    flex: 1;
-    flex-flow: column-reverse;
+.character_txt {
+  height: 350px;
+  float: left;
+  flex: 1;
+  flex-flow: column-reverse;
 }
-.character_txt ul li{
-    height: 50px;
-    margin-top: 30px;
-    text-align: center;
-    line-height: 50px;
-    box-shadow: 12px;
-    background: #e6e6e6;
-    border-radius: 10px;
-    box-shadow: 0 0 7px #f5f5f5;
-    transition: all 0.5;
+.character_txt ul li {
+  height: 50px;
+  margin-top: 30px;
+  text-align: center;
+  line-height: 50px;
+  box-shadow: 12px;
+  background: #e6e6e6;
+  border-radius: 10px;
+  box-shadow: 0 0 7px #f5f5f5;
+  transition: all 0.5;
 }
-.character_txt ul li:hover{
-   cursor: pointer;
-   transform: scale(1.02);
+.character_txt ul li:hover {
+  cursor: pointer;
+  transform: scale(1.02);
 }
-.character_address{
-    width: 800px;
-    height: 100px;
-    top: 30px;
-    position: relative;
-    color: #867e7eba;
+.character_address {
+  width: 800px;
+  height: 100px;
+  top: 30px;
+  position: relative;
+  color: #867e7eba;
 }
-.character_address span:nth-child(1){
-   font-size: 22px;
-    position: relative;
-    top: -10px;
-    left: 11px;
+.character_address span:nth-child(1) {
+  font-size: 22px;
+  position: relative;
+  top: -10px;
+  left: 11px;
+}
+
+.bossText {
+  
+}
+.bossimage{
+  float: left;
+  width: 500px;
+}
+.bossText .image img {
+  width: 100%;
+  /* height: 100%; */
+}
+ .text {
+  float: left;
+  width: 58.33333%;
 }
 </style>
