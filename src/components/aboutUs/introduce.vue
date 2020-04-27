@@ -7,7 +7,7 @@
     <div class="w" style="height:45px"></div>
     <div class="CompanyProfile w">
       <div class="CompanyImage">
-        <img :src="dataList.cover" alt="">
+        <img v-lazy="dataList.cover" alt="">
       </div>
       <div class="CompanyText">
         <p>{{dataList.content}}</p>
@@ -20,7 +20,7 @@
       <p>{{dataList.immense}}</p>
 
       <ul class="BCompanyImage w">
-        <li v-for="item in coverimgs" :key="item.id"><img  :src="item.picture" alt="">
+        <li v-for="item in coverimgs" :key="item.id"><img   v-lazy="item.picture" alt="">
         </li>
         
       </ul>
@@ -48,7 +48,7 @@
 
     <div class="bossText w">
       <div class="bossimage">
-        <img :src="chairman.cover" >
+        <img  v-lazy="chairman.cover" >
       </div>
       <div class="text">
         <h1>{{chairman.title}}</h1>

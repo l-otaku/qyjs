@@ -18,8 +18,14 @@ Vue.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
   ak: 'YOUR_APP_KEY'
 })
-Vue.config.productionTip = false
 
+import vuelazyload from 'vue-lazyload';  //图片预加载
+
+Vue.config.productionTip = false
+Vue.use(vuelazyload,{
+      error: '/static/timg.jpg',
+  　　loading: '/static/timg.gif'   // 图片没加载出来之前显示的图片
+  })
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
