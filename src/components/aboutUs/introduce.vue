@@ -8,7 +8,7 @@
     <div class="Company_Profile w">
       <div class="Company_image">
         <div >
-          <img :src="dataList.cover" alt="">
+          <img v-lazy="dataList.cover" alt="">
         </div>
       </div>
       <div class="Company_text">
@@ -25,7 +25,7 @@
       <ul class="BCompany_image w">
         <li v-for="item in coverimgs" :key="item.id">
           <a href.prevent="" style="width:90%">
-            <img  :src="item.picture" alt="">
+            <img  v-lazy="item.picture" alt="">
           </a>
         </li>
         
@@ -54,7 +54,7 @@
     <!-- boss 介绍 -->
     <div class="boss_introduce w">
       <div class="boss_image">
-        <img :src="chairman.cover" >
+        <img v-lazy="chairman.cover" >
       </div>
       <div class="boos_text">
         <h1>{{chairman.title}}</h1>

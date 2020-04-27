@@ -2,7 +2,7 @@
 <template>
   <div class="Projects">
     <div class="Projects_img">
-      <img :src="this.cover" alt />
+      <img v-lazy="this.cover" alt />
       <div class="Projects_txt">{{title}}</div>
       <div class="Projects_txts">{{tile}}</div>
     </div>
@@ -108,6 +108,7 @@ export default {
 .Projects_img img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .Projects_txt,
@@ -117,7 +118,7 @@ export default {
   float: left;
   position: absolute;
   left: 50%;
-  color: white;
+  color: rgba(255, 255, 255, 1);
   text-align: center;
   line-height: 80px;
 }

@@ -5,7 +5,7 @@
       <ul class="setshow">
         <li class="ProjectsMap_show act">
           <div class="project_img" v-for="item in oneArticle" :key="item.id">
-            <img :src="item.cover" alt />
+            <img v-lazy="item.cover" alt />
             <div class="project_text">
               <p>{{item.title}}</p>
               <p>
@@ -21,7 +21,7 @@
         </li>
         <li class="ProjectsMap_show">
           <div class="project_img" v-for="item in towArticle" :key="item.id">
-            <img :src="item.cover" alt />
+            <img  v-lazy="item.cover" alt />
             <div class="project_text">
               <p>{{item.title}}</p>
               <p>
@@ -37,7 +37,7 @@
         </li>
         <li class="ProjectsMap_show">
           <div class="project_img" v-for="item in threeArticle" :key="item.id">
-            <img :src="item.cover" alt />
+            <img  v-lazy="item.cover" alt />
             <div class="project_text">
               <p>{{item.title}}</p>
               <p>
@@ -196,6 +196,7 @@ export default {
   height: 27px;
   line-height: 27px;
   font-size: 14px;
+  padding: 0 0 0 5px;
   overflow: hidden; /*隐藏文字*/
   text-overflow: ellipsis; /*显示 ...*/
   white-space: nowrap; /*不换行*/
@@ -205,6 +206,7 @@ export default {
   height: 27px;
   line-height: 27px;
   font-size: 14px;
+  padding: 0 0 0 5px;
   overflow: hidden; /*隐藏文字*/
   text-overflow: ellipsis; /*显示 ...*/
   white-space: nowrap; /*不换行*/
@@ -225,6 +227,7 @@ export default {
   position: relative;
   line-height: 100px;
   font-size: 54px;
+  color: #e0dddd;
   text-align: center;
   cursor: pointer;
 }

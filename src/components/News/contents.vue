@@ -4,7 +4,7 @@
     <div class="content_left">
       <div class="content_left_one" v-for="item in oneArticle" :key="item.id">
         <div class="content_img">
-          <img :src="item.cover" alt />
+          <img  v-lazy="item.cover" alt />
         </div>
         <div class="content_txt">
           <h4>{{item.title}}</h4>
@@ -16,7 +16,7 @@
     <div class="content_right">
       <div class="content_left_one" v-for="item in towArticle" :key="item.id">
         <div class="content_img">
-          <img :src="item.cover" alt />
+          <img  v-lazy="item.cover" alt />
         </div>
         <div class="content_txt">
           <h4>{{item.title}}</h4>

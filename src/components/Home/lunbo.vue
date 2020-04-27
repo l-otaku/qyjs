@@ -3,7 +3,7 @@
 <div class='lunbo'>
       <el-carousel :interval="1000000" arrow="always" height="700px">
     <el-carousel-item v-for="item in imgs" :key="item.id">
-      <img :src="item.cover" alt="">
+      <img  v-lazy="item.cover"  alt="">
        <div  id="title">{{item.title}}</div>
        <div  id="tile">{{item.tile}}</div>
     </el-carousel-item>
@@ -75,7 +75,7 @@ mounted() {
     width: 700px;
     height: 80px;
     left: 50%;
-    color: white;
+    color: rgba(255, 255, 255, 1);
     text-align: center;
     font-size: 45px;
     line-height: 80px;
