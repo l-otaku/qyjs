@@ -217,19 +217,17 @@ export default {
   padding: 0 8px;
   overflow: hidden;
 }
-.BCompany_image li:first-child{
-    border-radius: 7px;
-
+.BCompany_image li:first-child {
+  border-radius: 7px;
 }
-.BCompany_image li:hover img{
+.BCompany_image li:hover img {
   transform: scale(1.1);
-  
 }
 .BCompany_image img {
-    border-radius: 7px;
+  border-radius: 7px;
   width: 100%;
   height: 240px;
-  transition: all .3s ;
+  transition: all 0.3s;
 }
 
 /* 产品简介 */
@@ -257,9 +255,9 @@ export default {
 }
 .Fintroduction_icon i {
   font-size: 42px;
-  transition: all .3s ;
+  transition: all 0.3s;
 }
-.Fintroduction_icon:hover i{
+.Fintroduction_icon:hover i {
   margin-top: -5px;
 }
 .Fintroduction_Text :last-child {
