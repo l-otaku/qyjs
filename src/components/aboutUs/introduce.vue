@@ -1,42 +1,48 @@
 <template>
 
   <div >
-
+    <!-- 公司简介上 -->
     <div class="w" style="height:80px"></div>
     <p style="font-size:23px; text-align:center">{{dataList.title}}</p>
     <div class="w" style="height:45px"></div>
-    <div class="CompanyProfile w">
-      <div class="CompanyImage">
-        <img :src="dataList.cover" alt="">
+    <div class="Company_Profile w">
+      <div class="Company_image">
+        <div >
+          <img :src="dataList.cover" alt="">
+        </div>
       </div>
-      <div class="CompanyText">
+      <div class="Company_text">
         <p>{{dataList.content}}</p>
         <p>{{dataList.main}}</p>
       </div>
     </div>
+    <!-- 公司简介下 -->
 
     <div class="w" style="height:20px"></div>
-    <div class="BCompanyProfile w">
+    <div class="BCompany_Profile w">
       <p>{{dataList.immense}}</p>
 
-      <ul class="BCompanyImage w">
-        <li v-for="item in coverimgs" :key="item.id"><img  :src="item.picture" alt="">
+      <ul class="BCompany_image w">
+        <li v-for="item in coverimgs" :key="item.id">
+          <a href.prevent="" style="width:90%">
+            <img  :src="item.picture" alt="">
+          </a>
         </li>
         
       </ul>
     </div>
-
+    <!-- 产品简介  -->
     <div class="w" style="height:80px"></div>
     <div class="Fintroduction">
       <div class="w" style="height:105px"></div>
       <ul class="w" >
         <li  v-for="item in character" :key="item.id">
-          <div class="FintroductionIcon" >
-            <i class="el-icon-unlock"></i>
+          <div class="Fintroduction_icon" >
+            <i :class="item.icon"></i><!-- el-icon-unlock   el-icon-service el-icon-s-marketing-->
           </div>
-          <div class="FintroductionText">
-            <p style="font-size:18px; margin-top: 8px;">{{item.title}}</p>
-            <p>{{item.content}}</p>
+          <div class="Fintroduction_Text">
+            <p style="font-size:18px; margin-top: 8px;" :title="item.title">{{item.title}}</p>
+            <p :title="item.content">{{item.content}}</p>
           </div>
          </li>
         
@@ -45,12 +51,12 @@
 
     </div>
     <div class="w" style="height:80px"></div>
-
-    <div class="bossText w">
-      <div class="bossimage">
+    <!-- boss 介绍 -->
+    <div class="boss_introduce w">
+      <div class="boss_image">
         <img :src="chairman.cover" >
       </div>
-      <div class="text">
+      <div class="boos_text">
         <h1>{{chairman.title}}</h1>
         <p>{{chairman.content}}</p>
         <p>{{chairman.contmain}}</p>
@@ -76,10 +82,10 @@ export default {
     //这里存放数据
     return {
       // dataList:new Array()
-      dataList:[],
-      coverimgs:[],//
-      character:[],//
-      chairman:[]//董事长致辞
+      dataList: [],
+      coverimgs: [], //产品图片
+      character: [], //安全严密 售后服务 产品丰富
+      chairman: [] //董事长致辞
     };
   },
   //监听属性 类似于data概念
@@ -92,20 +98,20 @@ export default {
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    let api = '/Regardingour.json';
+    let api = "/Regardingour.json";
     this.axios
       .get(api)
       .then(response => {
         // console.log(response.data.data)
-         this.dataList = response.data.data[0]
-         this.coverimgs = response.data.data[0].coverimgs
-         this.character = response.data.data[0].character
-         this.chairman =  response.data.data[0].chairman[0]
-         console.log(this.chairman.cover)
+        this.dataList = response.data.data[0];
+        this.coverimgs = response.data.data[0].coverimgs;
+        this.character = response.data.data[0].character;
+        this.chairman = response.data.data[0].chairman[0];
+        console.log(this.dataList);
         //  console.log(this.dataList);
       })
       .catch(function(error) {
-           console.log(error+'服务器错误');
+        console.log(error + "服务器错误");
       });
   },
   beforeCreate() {}, //生命周期 - 创建之前
@@ -114,7 +120,7 @@ export default {
   updated() {}, //生命周期 - 更新之后
   beforeDestroy() {}, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 
@@ -130,28 +136,27 @@ export default {
   margin: 0 auto;
 }
 /* 公司简介上 */
-.CompanyProfile {
+.Company_Profile {
   position: relative;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   height: auto;
-
   overflow: hidden;
 }
-.CompanyProfile::before {
+.Company_Profile::before {
   content: "";
   clear: both;
   height: 365px;
 }
-.CompanyProfile::after {
-  content: "";
-  clear: both;
+.Company_Profile::after {
   float: left;
+  content: "";
+  clear: both;
   height: 365px;
 }
-.CompanyImage {
+.Company_image {
   position: absolute;
   left: 0;
   top: 0;
@@ -159,12 +164,22 @@ export default {
   height: 365px;
   padding: 15px;
 }
-.CompanyImage img {
+.Company_image :first-child {
+  overflow: hidden;
+  width: 580px;
+  border-radius: 5px;
+}
+.Company_image:hover img {
+  transform: scale(1.1);
+}
+.Company_image img {
+  /* border-radius: 10px; */
+  float: right;
+  transition: all 0.5s;
   width: 100%;
   height: 100%;
-  float: right;
 }
-.CompanyText {
+.Company_text {
   position: absolute;
   right: 0;
   top: 0;
@@ -172,35 +187,52 @@ export default {
   height: 365px;
   padding-top: 50px;
 }
-.CompanyText p {
+.Company_text p {
   padding: 15px;
-  
+  text-indent: 2rem;
 }
 /* 公司简介下 */
-.BCompanyProfile {
+.BCompany_Profile {
   overflow: hidden;
 }
-.BCompanyProfile p {
+.BCompany_Profile p {
   padding: 0 14px;
+  text-indent: 2rem;
 }
 
-.BCompanyImage {
+.BCompany_image {
   position: relative;
   top: 0;
   left: 0;
   padding-top: 20px;
 }
-.BCompanyImage ul {
+.BCompany_image ul {
+  display: flex;
+  align-items: center;
 }
-.BCompanyImage li {
-  float: left;
+.BCompany_image li {
+  display: inline-block;
   width: 33.333333333333336%;
-  padding: 0 12px;
+  max-width: 33.333333333333336%;
+  padding: 0 8px;
+  overflow: hidden;
 }
-.BCompanyImage img {
+.BCompany_image li:first-child{
+    border-radius: 7px;
+
+}
+.BCompany_image li:hover img{
+  transform: scale(1.1);
+  
+}
+.BCompany_image img {
+    border-radius: 7px;
   width: 100%;
   height: 240px;
+  transition: all .3s ;
 }
+
+/* 产品简介 */
 .Fintroduction {
   width: 100%;
   height: 277px;
@@ -217,48 +249,53 @@ export default {
   line-height: 113px;
   padding: 0 12px;
 }
-.FintroductionIcon {
+.Fintroduction_icon {
   float: left;
   text-align: center;
   width: 85px;
   height: auto;
 }
-.FintroductionIcon i {
-  font-size:42px;
+.Fintroduction_icon i {
+  font-size: 42px;
+  transition: all .3s ;
 }
-.FintroductionText {
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
+.Fintroduction_icon:hover i{
+  margin-top: -5px;
 }
-.FintroductionIcon h1 {
+.Fintroduction_Text :last-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.Fintroduction_icon h1 {
   float: left;
   font-size: 18px;
 }
-
-.bossText {
+/* 董事长介绍 */
+.boss_introduce {
   overflow: hidden;
 }
-.bossText  .bossimage {
+.boss_introduce .boss_image {
   float: left;
   width: 41.66667%;
 }
-.bossText .image img {
+.boss_introduce .image img {
   width: 100%;
   height: 100%;
   max-height: 100%;
 }
-.bossText  .text {
+.boss_introduce .boos_text {
   float: left;
   width: 58.33333%;
 }
-.bossText  .text h1 {
+.boss_introduce .boos_text h1 {
   color: #333333;
   font-size: 28px;
   padding-bottom: 20px;
 }
-.bossText .text p {
+.boss_introduce .boos_text p {
   font-size: 14px;
   margin: 8px 0;
+  text-indent: 1rem;
 }
 </style>
