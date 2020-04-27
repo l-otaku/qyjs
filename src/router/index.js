@@ -7,23 +7,25 @@ import AboutUs from '@/views/AboutUs.vue'    //关于我们
 import Projects from '@/views/Projects.vue'    //项目展示
 import News from '@/views/News.vue'    //新闻中心
 import ContactUs from '@/views/ContactUs.vue'    //联系我们
+import NewsDetails from '@/views/News_details_page.vue'    //新闻详情页
 
 Vue.use(Router)
 
 const routes = [
-	{ path: "/", component: AppBar ,redirect: '/AppBar/Home'},
-    { path: '/AppBar', component: AppBar ,redirect: '/AppBar/Home' ,
-			children:[
-				{path: 'Home', component: Home},
-				{path: 'AboutUs', component: AboutUs},
-				{path: 'Projects', component: Projects},
-				{path: 'News', component: News},
-				{path: 'ContactUs', component: ContactUs},
-			],
-	},
-    // { path: "/Main", component: Main },
-    
-  ];
+  { path: "/", component: AppBar, redirect: '/AppBar/Home' },
+  {
+    path: '/AppBar', component: AppBar, redirect: '/AppBar/Home',
+    children: [
+      { path: 'Home', component: Home },
+      { path: 'AboutUs', component: AboutUs },
+      { path: 'Projects', component: Projects },
+      {path: 'News', component: News  },
+      { path: 'ContactUs', component: ContactUs },
+
+    ],
+  },
+  { path: "/AppBar/News/NewsDetails", component: NewsDetails },
+];
 
 export default new Router({
   routes
