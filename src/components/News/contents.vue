@@ -66,7 +66,7 @@ export default {
       
       this.$store.state.Journalism_id = id
 
-       this.$router.push({ path: "/AppBar/News/NewsDetails"}); 
+       this.$router.push({ path: "/index/News/NewsDetails"}); 
 
       // console.log(this.$store.state.Journalism_id);
     }

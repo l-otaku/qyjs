@@ -1,95 +1,116 @@
 <!-- 轮播 -->
 <template>
-<div class='lunbo'>
-      <el-carousel :interval="1000000" arrow="always" height="700px">
-    <el-carousel-item v-for="item in imgs" :key="item.id">
-      <img  v-lazy="item.cover"  alt="">
-       <div  id="title">{{item.title}}</div>
-       <div  id="tile">{{item.tile}}</div>
-    </el-carousel-item>
-  </el-carousel>
-</div>
+  <div class="lunbo">
+    <el-carousel :interval="1000000" arrow="always" height="700px">
+      <el-carousel-item v-for="item in imgs" :key="item.id">
+        <img v-lazy="item.cover" alt />
+        <div id="title">{{item.title}}</div>
+        <div id="tile">{{item.tile}}</div>
+      </el-carousel-item>
+    </el-carousel>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'lunbo',
-components: {},
-data() {
-//这里存放数据
-return {
-   imgs:[]   //轮播图片
-};
-},
-//监听属性 类似于data概念
-computed: {},
-//监控data中的数据变化
-watch: {},
-//方法集合
-methods: {
- lunbo(){
-    let api = '/hot_tag_list.json'
-    this.axios.get(api).then((response) => {
-      if(response.status === 200){
-         this.imgs = response.data.data; 
-         return;
-      } 
-    }).catch(function (error) {
+  name: "lunbo",
+  components: {},
+  data() {
+    //这里存放数据
+    return {
+      imgs: [] //轮播图片
+    };
+  },
+  //监听属性 类似于data概念
+  computed: {},
+  //监控data中的数据变化
+  watch: {},
+  //方法集合
+  methods: {
+    lunbo() {
+      let api = "/hot_tag_list.json";
+      this.axios
+        .get(api)
+        .then(response => {
+          if (response.status === 200) {
+            this.imgs = response.data.data;
+            //把数据存在本地 切换的时候就不不用再次请求
+            localStorage.setItem(
+              "weekDay",
+              JSON.stringify({ time: Date.now(), data: this.imgs })
+            );
+            return;
+          }
+        })
+        .catch(function(error) {
           //  console.log(error+'服务器错误');
-    });
-
-
+        });
+    },
+    Cache() {   //缓存
+      let weekArray = JSON.parse(localStorage.getItem("weekDay"));
+      if (!weekArray) {
+        //  不存在 就发送请求
+        this.lunbo(); //轮播
+      } else {
+        //  有旧的数据 定义过期时间  过期再次请求
+        if (Date.now() - weekArray.time > 1000 * 10) {
+          this.lunbo();
+        } else {
+          //可以使用旧的数据
+          // console.log("可以使用旧数据");
+          this.imgs = weekArray.data;
+        }
+      }
     }
-},
-//生命周期 - 挂载完成（可以访问DOM元素）
-mounted() {
-   this.lunbo() //轮播
-},
-
-}
+  },
+  //生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {
+    this.Cache();
+  }
+};
 </script>
 <style  scoped>
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 18px;
-    opacity: 0.75;
-    line-height: 300px;
-    margin: 0;
-  }
-  
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-  
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
-  img{
-    width: 100%;
-    height: 100%;
-    
-  }
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 18px;
+  opacity: 0.75;
+  line-height: 300px;
+  margin: 0;
+}
 
-#title,#tile{
-   position: absolute;
-    width: 700px;
-    height: 80px;
-    left: 50%;
-    color: rgba(255, 255, 255, 1);
-    text-align: center;
-    font-size: 45px;
-    line-height: 80px;
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #d3dce6;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+
+#title,
+#tile {
+  position: absolute;
+  width: 700px;
+  height: 80px;
+  left: 50%;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  font-size: 45px;
+  line-height: 80px;
 }
 /* 中文文字 */
-#title{
-    top: 35%;
-    font-size: 45px;
-    transform: translate(-50%, -35%);
+#title {
+  top: 35%;
+  font-size: 45px;
+  transform: translate(-50%, -35%);
 }
 /* 英文文字 */
-#tile{
-    top: 50%;
-    font-size: 20px;
-    transform: translate(-50%, -50%);
+#tile {
+  top: 50%;
+  font-size: 20px;
+  transform: translate(-50%, -50%);
 }
 </style>
