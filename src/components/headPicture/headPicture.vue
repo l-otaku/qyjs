@@ -45,7 +45,7 @@ export default {
           this.arrs = response.data.data;
           for (let i = 0; i < this.arrs.length; i++) {
             switch (this.$route.path) {   //匹配路由的对应值是该组件重复使用
-              case "/AppBar/AboutUs":
+              case "/index/AboutUs":
                 if (i == 0) {
                   this.num = i ;
                   this.cover = this.arrs[this.num].cover;
@@ -53,7 +53,7 @@ export default {
                   this.tile = this.arrs[this.num].tile;
                 }
                 break;
-              case "/AppBar/Projects":
+              case "/index/Projects":
                 if (i == 1) {
                   this.num = i ;
                   this.cover = this.arrs[this.num].cover;
@@ -61,7 +61,7 @@ export default {
                   this.tile = this.arrs[this.num].tile;
                 }
                 break;
-              case "/AppBar/News":
+              case "/index/News":
                 if (i == 2) {
                   this.num = i ;
                   this.cover = this.arrs[this.num].cover;
@@ -69,7 +69,7 @@ export default {
                   this.tile = this.arrs[this.num ].tile;
                 }
                 break;
-              case "/AppBar/ContactUs":
+              case "/index/ContactUs":
                 if (i == 3) {
                   this.num = i ;
                   this.cover = this.arrs[this.num].cover;

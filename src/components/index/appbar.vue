@@ -8,11 +8,11 @@
      <div class="heatmian_logo"><img src="../../assets/logo.png"></div>
      <div class="heatmian_text">
         <ul>
-          <li><router-link to="/AppBar/Home" tag="span">首页</router-link></li>
-          <li><router-link to="/AppBar/AboutUs" tag="span">关于我们</router-link></li>
-          <li><router-link to="/AppBar/Projects" tag="span">项目展示</router-link></li>
-          <li><router-link to="/AppBar/News" tag="span">新闻中心</router-link></li>
-          <li><router-link to="/AppBar/ContactUs" tag="span">联系我们</router-link></li>
+          <li><router-link to="/index/Home" tag="span">首页</router-link></li>
+          <li><router-link to="/index/AboutUs" tag="span">关于我们</router-link></li>
+          <li><router-link to="/index/Projects" tag="span">项目展示</router-link></li>
+          <li><router-link to="/index/News" tag="span">新闻中心</router-link></li>
+          <li><router-link to="/index/ContactUs" tag="span">联系我们</router-link></li>
         </ul>
      </div>
     </div> 

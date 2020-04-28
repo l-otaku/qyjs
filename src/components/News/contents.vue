@@ -2,7 +2,7 @@
 <template>
   <div class="content">
     <div class="content_left">
-      <div class="content_left_one" v-for="item in oneArticle" :key="item.id">
+      <div class="content_left_one" v-for="item in oneArticle" :key="item.id" @click="News_details_page(item.id)">
         <div class="content_img">
           <img  v-lazy="item.cover" alt />
         </div>
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="content_right">
-      <div class="content_left_one" v-for="item in towArticle" :key="item.id">
+      <div class="content_left_one" v-for="item in towArticle" :key="item.id" @click="News_details_page(item.id)">
         <div class="content_img">
           <img  v-lazy="item.cover" alt />
         </div>
@@ -61,6 +61,14 @@ export default {
         .catch(function(error) {
           //  console.log(error+'服务器错误');
         });
+    },
+    News_details_page(id){
+      
+      this.$store.state.Journalism_id = id
+
+       this.$router.push({ path: "/AppBar/News/NewsDetails"}); 
+
+      // console.log(this.$store.state.Journalism_id);
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
