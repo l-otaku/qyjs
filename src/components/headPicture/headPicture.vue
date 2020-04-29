@@ -32,7 +32,9 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
@@ -45,7 +47,7 @@ export default {
           this.arrs = response.data.data;
           for (let i = 0; i < this.arrs.length; i++) {
             switch (this.$route.path) {   //匹配路由的对应值是该组件重复使用
-              case "/AppBar/AboutUs":
+              case "/index/AboutUs":
                 if (i == 0) {
                   this.num = i ;
                   this.cover = this.arrs[this.num].cover;
@@ -53,7 +55,7 @@ export default {
                   this.tile = this.arrs[this.num].tile;
                 }
                 break;
-              case "/AppBar/Projects":
+              case "/index/Projects":
                 if (i == 1) {
                   this.num = i ;
                   this.cover = this.arrs[this.num].cover;
@@ -61,7 +63,7 @@ export default {
                   this.tile = this.arrs[this.num].tile;
                 }
                 break;
-              case "/AppBar/News":
+              case "/index/News":
                 if (i == 2) {
                   this.num = i ;
                   this.cover = this.arrs[this.num].cover;
@@ -69,7 +71,7 @@ export default {
                   this.tile = this.arrs[this.num ].tile;
                 }
                 break;
-              case "/AppBar/ContactUs":
+              case "/index/ContactUs":
                 if (i == 3) {
                   this.num = i ;
                   this.cover = this.arrs[this.num].cover;

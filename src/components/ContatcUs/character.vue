@@ -18,8 +18,7 @@
     </div>
     </div>
     <div class="character_address">
-        <span>
-            <b>地址:</b> 汕头市潮南区峡山街道南里居委广祥路群英上品花园内</span><br>
+        <span>汕头市潮南区峡山街道南里居委广祥路群英上品花园内</span><br>
         <span>&emsp;&emsp;&emsp;&emsp; Qunying shangpin garden, guangxiang road, nanliju committee, xiashan street, chaonan district, shantou city</span>
     </div>
 </div>
@@ -86,11 +85,12 @@ export default {
   transform: scale(1.02);
 }
 .character_address {
-  width: 800px;
-  height: 100px;
-  top: 30px;
-  position: relative;
-  color: #867e7eba;
+    width: 1200px;
+    height: 100px;
+    top: 30px;
+    text-align: center;
+    position: relative;
+    color: #965252ba;
 }
 .character_address span:nth-child(1) {
   font-size: 22px;

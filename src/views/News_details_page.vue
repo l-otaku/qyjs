@@ -15,7 +15,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import BottomModule from '@/components/BottomModule/BottomModule'
 import Journalism from '@/components/Journalism/Journalism'
-import appbar from '@/components/appbar/appbar'
+import appbar from "@/components/index/appbar"
 
 export default {
 
