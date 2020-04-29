@@ -1,30 +1,29 @@
 <!--  -->
 <template>
-  <div class="content">
-    <div class="content_left">
-      <div class="content_left_one" v-for="item in oneArticle" :key="item.id" @click="News_details_page(item.id)">
-        <div class="content_img">
-          <img  v-lazy="item.cover" alt />
+  <div >
+    <div class="w" style="height:40px;"></div>
+    <ul class="content">
+
+      <li v-for="item in arrs" :key="item.id" @click="News_details_page(item.id-1)" :data-index="item.id-1">
+        <div class="contentBox">
+          <div class="image">
+            <img v-lazy="item.cover" alt="">
+          </div>
+
+          <div class="contentMain">
+            <h3>{{item.title}}</h3>
+            <p>{{item.main}}</p>
+            <p style="padding-top:15px;">{{item.time}}</p>
+          </div>
         </div>
-        <div class="content_txt">
-          <h4>{{item.title}}</h4>
-          <div>{{item.mian}}</div>
-          <p>{{item.time}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="content_right">
-      <div class="content_left_one" v-for="item in towArticle" :key="item.id" @click="News_details_page(item.id)">
-        <div class="content_img">
-          <img  v-lazy="item.cover" alt />
-        </div>
-        <div class="content_txt">
-          <h4>{{item.title}}</h4>
-          <div>{{item.mian}}</div>
-          <p>{{item.time}}</p>
-        </div>
-      </div>
-    </div>
+      </li>
+      
+      
+
+    </ul>
+    
+  <div class="w" style="height:40px;"></div>
+
   </div>
 </template>
 
@@ -37,8 +36,7 @@ export default {
     //这里存放数据
     return {
       arrs: [], //接口数据
-      oneArticle: [], //截取数据
-      towArticle: [] //截取数据
+
     };
   },
   //监听属性 类似于data概念
@@ -53,9 +51,9 @@ export default {
         .get(api)
         .then(response => {
           if (response.status === 200) {
+
             this.arrs = response.data.data;
-            this.oneArticle = this.arrs.slice(0, 2);
-            this.towArticle = this.arrs.slice(2, 4);
+            
           }
         })
         .catch(function(error) {
@@ -64,15 +62,14 @@ export default {
     },
     News_details_page(id){
       
-      this.$store.state.Journalism_id = id
+       this.$router.push({ path: "/AppBar/News/NewsDetails/"+ id }); 
 
-       this.$router.push({ path: "/AppBar/News/NewsDetails"}); 
-
-      // console.log(this.$store.state.Journalism_id);
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     this.setnews() //请求数据
@@ -87,74 +84,78 @@ export default {
 };
 </script>
 <style  scoped>
+
+*{
+  box-sizing: border-box;
+}
+.w {
+  width: 1200px;
+  margin: 0 auto;
+}
 .content {
   width: 1200px;
-  height: 538px;
-  margin: 0 auto;
-  padding-top: 90px;
-  position: relative;
-  display: flex;
+  height: auto;
+  margin:0  auto;
+  overflow: hidden;
 }
-.content_left,
-.content_right {
-  height: 400px;
-  flex: 5;
-  padding-right: 10px;
-  padding-left: 10px;
+.content li{
+  padding: 14px;
+  /* padding-top: 14px; */
+  float: left;
+  width: 49%;
+  height: auto;
+  cursor: pointer;
 }
-.content_left_one {
-  height: 167px;
-  margin-top: 20px;
-  position: relative;
-  border: 1px solid rgb(238, 238, 238);
-  display: flex;
-  flex-direction: row;
-}
-.content_left_one:hover {
+.content li:hover{
   cursor: pointer;
   transform: translateY(-10px);
-  transition: 1s all;
+  transition: 1s all ; 
 }
-.content_img {
-  flex: 4;
-  height: 160px;
+.content li:hover h3{
+  color: #e69c33;
 }
-.content_img img {
+
+.content .contentBox{
   width: 100%;
-  height: 100%;
+  height: 159px;
+  float: left;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
 }
-.content_txt {
-  flex: 6;
-  height: 160px;
-  padding-left: 15px;
+.content .image{
+  width: 40%;
+  float: left;
+  vertical-align: middle;
+}
+
+.content img{
+  border-radius: 5px;
+  width: 100%;
+  height: 157px;
+  vertical-align: bottom;
+
+}
+.contentMain{
+  float: left;
+  width: 60%;
+  padding:0 17px;
+  
+}
+.contentMain h3{
+  margin-top: 10px;
+  
+white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contentMain p{
   padding-top: 10px;
 }
-.content_txt h4 {
-  width: 300px;
-  height: 36px;
-  line-height: 36px;
-  overflow: hidden; /*隐藏文字*/
-  text-overflow: ellipsis; /*显示 ...*/
-  white-space: nowrap; /*不换行*/
-  color: #333;
-  font-size: 16px;
-}
-.content_txt div {
-  width: 300px;
-  height: 74px;
-  overflow: hidden;
-  color: #999;
-  line-height: 23px;
-  text-overflow: ellipsis;
-  display: -webkit-box; /*必须结合的属性，将对象作为弹性伸缩盒子模型显示*/
-  -webkit-line-clamp: 3; /*控制文本的行数*/
-  -webkit-box-orient: vertical; /*必须结合的属性，设置或检索伸缩盒对象的子元素的排列方式*/
-}
-.content_txt p {
-  height: 18px;
-  color: #999;
-  position: relative;
-  top: 10px;
-  font-size: 12px;
+.contentMain p:nth-child(2){
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
 }
 </style>
