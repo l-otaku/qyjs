@@ -6,7 +6,8 @@ const store = new Vuex.Store({
   state: {
     Journalism_id:' '
   },
-  mutations: {},
+  mutations: {
+  },
   actions:{},
   modules:{},
 })

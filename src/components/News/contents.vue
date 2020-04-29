@@ -42,7 +42,9 @@ export default {
     };
   },
   //监听属性 类似于data概念
-  computed: {},
+  computed: {
+  
+  },
   //监控data中的数据变化
   watch: {},
   //方法集合
@@ -65,6 +67,7 @@ export default {
     News_details_page(id){
       
       this.$store.state.Journalism_id = id
+      
 
        this.$router.push({ path: "/index/News/NewsDetails"}); 
 

@@ -149,7 +149,9 @@ export default {
     };
   },
   //监听属性 类似于data概念
-  computed: {},
+  computed: {
+
+  },
   //监控data中的数据变化
   watch: {},
   //方法集合
@@ -164,8 +166,11 @@ export default {
 
     this.axios.get(api).then(response => {
       this.dateilist = response.data.data;
-      console.log(this.dateilist);
+      // console.log(this.dateilist);
     });
+
+    
+     
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前

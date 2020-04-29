@@ -2,7 +2,7 @@
 <template>
   <div class="Projects">
     <div class="Projects_img">
-      <img v-lazy="this.cover" alt />
+      <img :src="this.cover" alt />
       <div class="Projects_txt">{{title}}</div>
       <div class="Projects_txts">{{tile}}</div>
     </div>
@@ -33,23 +33,31 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    
-  },
-  //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
-  //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    let api = "/Projects.json";
-    this.axios
-      .get(api)
-      .then(response => {
-        if (response.status === 200) {
-          this.arrs = response.data.data;
+    getup() {
+      let api = "/Projects.json";
+      this.$fn(api);
+    },
+    cachae() {
+      let des = JSON.parse(localStorage.getItem("weone"));
+      if (!des) {
+        //  不存在数据就发送请求
+        console.log("没请求");
+        this.getup();
+      } else {
+        //  有旧的数据 定义过期时间为12小时  过期再次请求
+        if (Date.now() - des.time > 432 * 100000) {
+          this.getup();
+        } else {
+          // 可以使用旧的数据
+          console.log("可以使用旧数据");
+          this.arrs = des.data;
           for (let i = 0; i < this.arrs.length; i++) {
-            switch (this.$route.path) {   //匹配路由的对应值是该组件重复使用
+            switch (
+              this.$route.path //匹配路由的对应值是该组件重复使用
+            ) {
               case "/index/AboutUs":
                 if (i == 0) {
-                  this.num = i ;
+                  this.num = i;
                   this.cover = this.arrs[this.num].cover;
                   this.title = this.arrs[this.num].title;
                   this.tile = this.arrs[this.num].tile;
@@ -57,7 +65,7 @@ export default {
                 break;
               case "/index/Projects":
                 if (i == 1) {
-                  this.num = i ;
+                  this.num = i;
                   this.cover = this.arrs[this.num].cover;
                   this.title = this.arrs[this.num].title;
                   this.tile = this.arrs[this.num].tile;
@@ -65,26 +73,30 @@ export default {
                 break;
               case "/index/News":
                 if (i == 2) {
-                  this.num = i ;
-                  this.cover = this.arrs[this.num].cover;
-                  this.title = this.arrs[this.num].title;
-                  this.tile = this.arrs[this.num ].tile;
-                }
-                break;
-              case "/index/ContactUs":
-                if (i == 3) {
-                  this.num = i ;
+                  this.num = i;
                   this.cover = this.arrs[this.num].cover;
                   this.title = this.arrs[this.num].title;
                   this.tile = this.arrs[this.num].tile;
                 }
+                break;
+              case "/index/ContactUs":
+                if (i == 3) {
+                  this.num = i;
+                  this.cover = this.arrs[this.num].cover;
+                  this.title = this.arrs[this.num].title;
+                  this.tile =  this.arrs[this.num].tile;
+                }
             }
           }
         }
-      })
-      .catch(function(error) {
-        //    console.log(error+'服务器错误');
-      });
+      }
+    }
+  },
+  //生命周期 - 创建完成（可以访问当前this实例）
+  created() {},
+  //生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {
+    this.cachae();
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前

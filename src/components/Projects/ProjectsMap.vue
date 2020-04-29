@@ -72,7 +72,7 @@ export default {
     //这里存放数据
     return {
       index: 0,
-      arrs: [], //请求的数据
+      arr: [], //请求的数据
       oneArticle: [], //截取数据的两条
       towArticle: [], //截取数据的两条
       threeArticle: [] //截取数据的两条
@@ -101,18 +101,30 @@ export default {
       }
       Ulli[index].className = "ProjectsMap_show act";
     },
+    getup(){  //请求数据
+     let api = "/Projectsimgs.json";
+     this.$fn(api);
+    },
     setprojiects() {
-      let api = "/Projectsimgs.json";
-      this.axios
-        .get(api)
-        .then(res => {
-          // console.log(res.data.data);
-          this.arrs = res.data.data;
-          this.oneArticle = this.arrs.slice(0, 2);
-          this.towArticle = this.arrs.slice(2, 4);
-          this.threeArticle = this.arrs.slice(4, 6);
-        })
-        .catch(function(error) {});
+      let datwo = JSON.parse(localStorage.getItem("wetwo"));
+       if(!datwo){
+        //  不存在数据就发送请求
+       console.log('没请求')
+         this.getup();
+     }else{
+   //  有旧的数据 定义过期时间为12小时  过期再次请求
+        if (Date.now() - datwo.time > 432*100000) {
+           this.getup();
+        } else {
+          // 可以使用旧的数据
+          console.log("可以使用旧数据");
+          this.arr = datwo.data;       
+          this.oneArticle = this.arr.slice(0, 2);
+          this.towArticle = this.arr.slice(2, 4);
+          this.threeArticle = this.arr.slice(4, 6);
+        }
+     }
+
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -156,10 +168,12 @@ export default {
   position: relative;
   left: 50%;
   top: 5%;
+  overflow: hidden;
   transition: 1s all;
   transform: translate(-50%, -5%);
   padding: 10px 10px 10px 10px;
   margin-top: 10px;
+  cursor: pointer;
   border-radius: 3px;
   box-shadow: 6px 4px 19px rgba(0, 0, 0, 0.9);
 }
@@ -170,7 +184,7 @@ export default {
   transition: 1s all;
 }
 .project_img img:hover {
-  transform: scale(1.02);
+  transform: scale(1.5);
 }
 .project_text {
   width: 195px;

@@ -109,7 +109,7 @@ export default {
         this.coverimgs = response.data.data[0].coverimgs;
         this.character = response.data.data[0].character;
         this.chairman = response.data.data[0].chairman[0];
-        console.log(this.dataList);
+        // console.log(this.dataList);
         //  console.log(this.dataList);
       })
       .catch(function(error) {

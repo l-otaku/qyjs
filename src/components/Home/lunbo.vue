@@ -12,60 +12,42 @@
 </template>
 
 <script>
+
 export default {
   name: "lunbo",
   components: {},
   data() {
     //这里存放数据
     return {
-      imgs: [] //轮播图片
+      imgs: [], //轮播图片
     };
   },
-  //监听属性 类似于data概念
-  computed: {},
-  //监控data中的数据变化
-  watch: {},
-  //方法集合
   methods: {
-    lunbo() {
-      let api = "/hot_tag_list.json";
-      this.axios
-        .get(api)
-        .then(response => {
-          if (response.status === 200) {
-            this.imgs = response.data.data;
-            //把数据存在本地 切换的时候就不不用再次请求
-            localStorage.setItem(
-              "weekDay",
-              JSON.stringify({ time: Date.now(), data: this.imgs })
-            );
-            return;
-          }
-        })
-        .catch(function(error) {
-          //  console.log(error+'服务器错误');
-        });
+    getup(){ //请求数据
+     let api = "/hot_tag_list.json";
+    this.$fn(api);
     },
-    Cache() {   //缓存
-      let weekArray = JSON.parse(localStorage.getItem("weekDay"));
-      if (!weekArray) {
-        //  不存在 就发送请求
-        this.lunbo(); //轮播
-      } else {
-        //  有旧的数据 定义过期时间  过期再次请求
-        if (Date.now() - weekArray.time > 1000 * 10) {
-          this.lunbo();
+    cachae(){
+   let datet = JSON.parse(localStorage.getItem("we"));
+       if(!datet){
+        //  不存在数据就发送请求
+       console.log('没请求')
+         this.getup();
+     }else{
+   //  有旧的数据 定义过期时间为12小时  过期再次请求
+        if (Date.now() - datet.time > 432*100000) {
+           this.getup();
         } else {
-          //可以使用旧的数据
-          // console.log("可以使用旧数据");
-          this.imgs = weekArray.data;
+          // 可以使用旧的数据
+          console.log("可以使用旧数据");
+          this.imgs = datet.data;
         }
-      }
+     }
     }
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    this.Cache();
+    this.cachae();
   }
 };
 </script>

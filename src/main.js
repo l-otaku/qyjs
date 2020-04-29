@@ -7,6 +7,9 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './css/index.css';//全局样式
+import bar from './api/getdata.js';  //定义全局请求数据api文件
+Vue.prototype.$fn=bar;  //其中$xx为新命的名
+
 Vue.use(ElementUI);  //引入elementui
 
 import axios from 'axios'
