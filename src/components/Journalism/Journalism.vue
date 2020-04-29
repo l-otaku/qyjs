@@ -8,13 +8,14 @@
         <nav class="bread mw">
           <ul>
             <li>
-              <a href="">首页</a>
+              <a href="#/AppBar/Home">首页</a>
               <i class="el-icon-arrow-right"></i>
             </li>
-          <li>
-              <a href="">五金资讯</a>
+            <li>
+              <a href="#/AppBar/News">新闻中心</a>
               <i class="el-icon-arrow-right"></i>
-            </li><li>
+            </li>
+            <li>
               <span>详情</span>
             </li>
             
@@ -23,41 +24,43 @@
         <div class="mw" style="height:30px"></div>
           <!-- 主体 -->
         <h1 class="mainTitle">
-          汉匠万里挑一的选址 FAST为何选择这个"窝"里建
+          {{mainList.title}}
         </h1>
         <div class="mw" style="height:20px"></div>
         <div>
-          <span class="mainDate">2019-10-21 15:05:20</span>
+          <span  class="mainDate">{{mainList.date}}</span>
         </div>
         <div class="mw" style="height:30px"></div>
         
         <div class="mainText">
-          <p>世界最大单口径射电望远镜今天在贵州省平塘县正式投入使用，这一500米口径的球面射电望远镜建设在喀斯特地貌天然形成的洼地中。</p>
-          <p>世界最大单口径射电望远镜(FAST)今天在贵州省平塘县正式投入使用，这一500米口径的球面射电望远镜建设在喀斯特地貌天然形成的洼地中，被誉为“观天巨眼”。</p>
-          <p>由于FAST的落户，安放“观天巨眼”的洼地也成为科学界关注的焦点，人们称这个名叫“大窝凼”的自然洼地为“地球上最美的眼窝”。</p>
-          <p>&nbsp;</p>
+          <p v-for="item in mainList.text" :key="item.id"> 
+             {{item.titleText}} 
+          </p>
           <p>&nbsp;</p>
           <p>&nbsp;</p>
         </div>
         <div class="mainImg">
           <div>
-            <img src="http://v1.cdn-static.cn/2018/08/15/99d56c5bc8b8f8836d21850410ea7be4.jpeg" alt="">
+            <!-- <img v-lazy="mainList.image" alt=""> -->
           </div>
         </div>
         <div class="mw" style="height:60px"></div>
         <div class="mainBottom">
-          <a href="">
-            <p>上一篇&nbsp;&nbsp;:&nbsp;&nbsp; <span>上市公司炒房记 高溢价“卖楼”频现</span></p>
+          <a @click="BtnUp()">
+            <p>上一篇&nbsp;&nbsp;:&nbsp;&nbsp; 
+              <span>{{upText}}</span>
+              </p>
           </a>
-          <a href="">
+          <a @click="Btndown()">
             <p>
               <span>
-                上市公司炒房记 高溢价“卖楼”频现
+                {{downText}}
               &nbsp;&nbsp; 
               </span>:&nbsp;&nbsp;下一篇
             </p>
           </a>
         </div>
+          {{id }}
         
       </div>
       <!-- 主体左边结束 -->
@@ -65,57 +68,21 @@
       <!-- 主体右边开始 -->
       <div class="mainRight">
         <h2>最新新闻</h2>
-      <ul class="rightMain">
-        <li>
-          <a href="">
-            <div class="right_Main_img">
-              <img src="http://s-14587.p.cdn-static.cn/10733_157139029584116.png" alt="">
-            </div>
-            <div class="right_Main_Text">
-              <h3 style="padding-top:19px;color:black">汉匠万里挑一的选址 FAST为何选择这个"窝"里建</h3>
-              <span style="padding-top:3px;">世界最大单口径射电望远镜今天在贵州省平塘县正式投入使用，这一500米口径的球面射电望远镜建设在喀斯特地貌天然形成的洼地中。</span>
-              <span  style="padding-top:20px;">2019-10-21 15:05:20</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <div class="right_Main_img">
-              <img src="http://s-14587.p.cdn-static.cn/10733_157139029584116.png" alt="">
-            </div>
-            <div class="right_Main_Text">
-              <h3 style="padding-top:19px;color:black">汉匠万里挑一的选址 FAST为何选择这个"窝"里建</h3>
-              <span style="padding-top:3px;">世界最大单口径射电望远镜今天在贵州省平塘县正式投入使用，这一500米口径的球面射电望远镜建设在喀斯特地貌天然形成的洼地中。</span>
-              <span  style="padding-top:20px;">2019-10-21 15:05:20</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <div class="right_Main_img">
-              <img src="http://s-14587.p.cdn-static.cn/10733_157139029584116.png" alt="">
-            </div>
-            <div class="right_Main_Text">
-              <h3 style="padding-top:19px;color:black">汉匠万里挑一的选址 FAST为何选择这个"窝"里建</h3>
-              <span style="padding-top:3px;">世界最大单口径射电望远镜今天在贵州省平塘县正式投入使用，这一500米口径的球面射电望远镜建设在喀斯特地貌天然形成的洼地中。</span>
-              <span  style="padding-top:20px;">2019-10-21 15:05:20</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <div class="right_Main_img">
-              <img src="http://s-14587.p.cdn-static.cn/10733_157139029584116.png" alt="">
-            </div>
-            <div class="right_Main_Text">
-              <h3 style="padding-top:19px;color:black">汉匠万里挑一的选址 FAST为何选择这个"窝"里建</h3>
-              <span style="padding-top:3px;">世界最大单口径射电望远镜今天在贵州省平塘县正式投入使用，这一500米口径的球面射电望远镜建设在喀斯特地貌天然形成的洼地中。</span>
-              <span  style="padding-top:20px;">2019-10-21 15:05:20</span>
-            </div>
-          </a>
-        </li>
-        
-      </ul>
+        <ul class="rightMain">
+          <li v-for="item in NewJournalism" :key="item.id">
+            <a href="">
+              <div class="right_Main_img">
+                <img v-lazy="item.cover" alt="">
+              </div>
+              <div class="right_Main_Text">
+                <h3 style="padding-top:3px;color:black">{{item.title}}</h3>
+                <span style="padding-top:3px;">{{item.main}}</span>
+                <span  style="padding-top:20px;">{{item.time}}</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+
       </div>
 
       <!-- 主体右边结束 -->
@@ -136,7 +103,6 @@ import headPicture from "@/components/headPicture/headPicture";
 import BottomModule from "@/components/BottomModule/BottomModule";
 
 export default {
-  name: "",
   //import引入的组件需要注入到对象中才能使用
   components: {
     BottomModule,
@@ -145,33 +111,110 @@ export default {
   data() {
     //这里存放数据
     return {
-      dateilist: "" //列表数据
+      id: "", //页面 ID
+      bottomNavId: "",
+      // id: 1, //页面 ID
+      dataList: [], //列表数据
+      mainList: [], //主体数据
+      textList: [], //主体文本
+      NewJournalism: [], //右边新闻数据
+      upText: "", //上一篇 
+      downText: "", //下一篇
+      up:0, //底部导航栏id
+      down:0, //顶部导航栏
     };
   },
   //监听属性 类似于data概念
-  computed: {
-
-  },
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
-  //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
-  //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    //  console.log(this.$store.state.Journalism_id);
+  methods: {
+    returnTop() {
+      //返回上一层
 
-    let api = "/News_detail.json";
+      this.$router.go(-1);
+    },
 
-    this.axios.get(api).then(response => {
-      this.dateilist = response.data.data;
-      // console.log(this.dateilist);
-    });
+    BtnUp() {//上一篇  实现逻辑 更改 id 重新赋值 实现刷新数据
+      this.id = this.id <= 0 ? (this.id = 4) : this.id; //判断是否 是第一篇
+      this.id -= 1;
+      this.mainList = this.dataList[this.id]; // 主体数据赋值
+      this.upText = this.NewJournalism[this.id].title; // 主体文字赋值
+      this.upDownFun()
+    },
+    Btndown() {//下一篇  实现逻辑 更改 id 重新赋值 实现刷新数据
+      this.id = this.id >= 3 ? (this.id = -1) : this.id; //判断是否 最后一篇
+      this.id += 1;
+      this.mainList = this.dataList[this.id];
+      this.downText = this.NewJournalism[this.id].title;
+      this.upDownFun() 
+    },
 
-    
-     
+    upDownFun(){ //更改 底部 导航栏数据
+
+        if (this.id == 0) {
+
+         this.up = 3 , this.down = 1;
+
+        } else if (this.id == 1) {
+
+          this.up = 0 , this.down = 2;
+
+        } else if (this.id == 2){
+
+          this.up = 1 , this.down = 3;
+
+        }else if(this.id == 3){
+
+          this.up = 2 , this.down = 0;
+
+        }
+        this.upText = this.NewJournalism[this.up].title;
+        this.downText = this.NewJournalism[this.down].title;
+    },
+
+
+
+    getNewsList() {//加载对应 页面
+      //传 id 调
+
+      var api = "/News_detail.json"; //主体新闻地址
+
+      this.axios.get(api).then(response => {
+        this.dataList = response.data.data;
+
+        this.mainList = this.dataList[this.id]; // 主体数据
+
+      });
+    }
+
+
   },
+
+  //生命周期 - 创建完成（可以访问当前this实例）
+  created() {
+    this.id = parseInt(this.$route.params.id);
+    this.bottomNavId = this.id;
+    
+    var NJournalismApi = "/NewsCenter.json"; //右边新列表地址
+
+    this.getNewsList();
+
+    this.axios //请求右边新闻列表
+      .get(NJournalismApi)
+      .then(response => {
+        this.NewJournalism = response.data.data;
+       
+       this.upDownFun()
+
+
+      });
+
+
+  },
+  //生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {},
+
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -203,24 +246,28 @@ export default {
 }
 
 /* 面包屑 */
+
 .bread {
   color: #606297;
 }
-.bread ul {
-}
+/* .bread ul {} */
 .bread li {
   display: inline-block;
   padding: 10px 8px;
 }
-.bread li a {
-}
+/* .bread li a {} */
 .bread a {
   padding: 10px 0;
+}
+.bread span {
+  cursor: not-allowed;
+  color: black;
 }
 .bread a:hover,
 .bread span:hover {
   color: #40b8ff;
 }
+
 .bread li i {
   padding: 0 0 0 5px;
 }
@@ -234,16 +281,18 @@ export default {
   width: 90%;
   text-indent: 1.5rem;
   margin: 15px 0;
+  line-height: 23px;
 }
 /* 主体图片 */
 
 .mainImg {
-  /* width: 80%; */
+  width: 90%;
 }
 .mainImg img {
   width: 100%;
 }
 /* 主体底部 */
+
 .mainBottom {
   display: flex;
   justify-content: space-between;
@@ -252,6 +301,7 @@ export default {
 }
 .mainBottom a {
   padding: 15px 20px;
+  cursor: pointer;
 }
 .mainBottom p {
   display: inline-block;
@@ -274,20 +324,24 @@ export default {
   flex-direction: column;
   position: relative;
   padding: 8px 0;
-
+}
+.rightMain :hover img {
+  transform: scale(1.1);
 }
 .right_Main_img {
-  width: 35%;
+  overflow: hidden;
+  width: 40%;
   height: auto;
+  border-radius: 5px;
 }
-.rightMain li{
+.rightMain li {
   position: relative;
   margin-top: 15px;
 }
 .rightMain li img {
   float: left;
   width: 100%;
-  height: 110px;
+  transition: all 0.5s;
 }
 .right_Main_Text {
   position: absolute;
@@ -295,8 +349,8 @@ export default {
   right: 0;
   display: flex;
   flex-direction: column;
-  width: 65%;
-  color: #606297; 
+  width: 60%;
+  color: #606297;
 }
 
 .right_Main_Text h3,
@@ -307,5 +361,4 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 </style>

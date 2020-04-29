@@ -253,9 +253,9 @@ export default {
   float: left;
   text-align: center;
   width: 85px;
-  height: auto;
 }
 .Fintroduction_icon i {
+  height:53px;
   font-size: 42px;
   transition: all 0.3s;
 }

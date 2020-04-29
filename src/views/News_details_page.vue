@@ -39,9 +39,7 @@ computed: {
 watch: {},
 //方法集合
 methods: {
-  returnTop(){
-     this.$router.go(-1);//返回上一层
-  }
+  
 },
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {

@@ -24,7 +24,7 @@ const routes = [
 
     ],
   },
-  { path: "/index/News/NewsDetails", component: NewsDetails },
+  { path: "/AppBar/News/NewsDetails/:id", component: NewsDetails },
 ];
 
 export default new Router({
