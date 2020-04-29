@@ -12,7 +12,7 @@
         <ul>
             <li>广东群英建设有限公司</li>
             <li><span>联系电话:</span>+861382952632</li>
-            <li><span>座机电话:</span>0754-89376777</li>
+            <li><span>咨询电话:</span>0754-89376777</li>
             <li><span>电子邮箱:</span>qy@gdjs.com</li>
         </ul>
     </div>
@@ -76,6 +76,7 @@ export default {
   line-height: 50px;
   box-shadow: 12px;
   background: #e6e6e6;
+  color: #965252ba;
   border-radius: 10px;
   box-shadow: 0 0 7px #f5f5f5;
   transition: all 0.5;
@@ -83,6 +84,7 @@ export default {
 .character_txt ul li:hover {
   cursor: pointer;
   transform: scale(1.02);
+  color: #151414ba;
 }
 .character_address {
     width: 1200px;
@@ -97,10 +99,6 @@ export default {
   position: relative;
   top: -10px;
   left: 11px;
-}
-
-.bossText {
-  
 }
 .bossimage{
   float: left;
