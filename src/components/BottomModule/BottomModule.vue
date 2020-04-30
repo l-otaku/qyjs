@@ -16,9 +16,6 @@
       <div class="Bottom_txt">
         <ul class="Bottom_txt_one">
           <li style="font-size:18px;  color: #c1bdb6;">联系我们</li>
-          <!-- <li v-for="item in arrsp" :key="item.pohe">
-            <span>{{item.pohe}}</span>&nbsp;&nbsp;{{item.text}}
-          </li>-->
           <li v-for="item in arrs" :key="item.message">
             <span>{{item.message}}</span>
           </li>
