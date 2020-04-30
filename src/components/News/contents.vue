@@ -3,7 +3,7 @@
   <div >
     <div class="w" style="height:40px;"></div>
     <ul class="content">
-
+      
       <li v-for="item in arrs" :key="item.id" @click="News_details_page(item.id-1)" :data-index="item.id-1">
         <div class="contentBox">
           <div class="image">
@@ -55,7 +55,6 @@ export default {
           if (response.status === 200) {
 
             this.arrs = response.data.data;
-            
           }
         })
         .catch(function(error) {
@@ -64,7 +63,7 @@ export default {
     },
     News_details_page(id){
       
-       this.$router.push({ path: "/AppBar/News/NewsDetails/"+ id }); 
+       this.$router.push({ path: "/index/News/NewsDetails/"+ id }); 
 
     }
   },

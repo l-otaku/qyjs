@@ -113,6 +113,7 @@ export default {
   position: relative;
   height: 100%;
   padding-top: 20px;
+  margin-bottom: 20px;
 }
 .Projects_img {
   width: 100%;

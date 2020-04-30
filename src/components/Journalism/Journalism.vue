@@ -8,11 +8,11 @@
         <nav class="bread mw">
           <ul>
             <li>
-              <a href="#/AppBar/Home">首页</a>
+              <a href="#/index/Home">首页</a>
               <i class="el-icon-arrow-right"></i>
             </li>
             <li>
-              <a href="#/AppBar/News">新闻中心</a>
+              <a href="#/index/News">新闻中心</a>
               <i class="el-icon-arrow-right"></i>
             </li>
             <li>
@@ -41,17 +41,17 @@
         </div>
         <div class="mainImg">
           <div>
-            <!-- <img v-lazy="mainList.image" alt=""> -->
+            <img v-lazy="mainList.image" alt="">
           </div>
         </div>
         <div class="mw" style="height:60px"></div>
-        <div class="mainBottom">
-          <a @click="BtnUp()">
+        <div class="mainBottom" ref="btn">
+          <a @click="BtnUp()" ref="a">
             <p>上一篇&nbsp;&nbsp;:&nbsp;&nbsp; 
               <span>{{upText}}</span>
               </p>
           </a>
-          <a @click="Btndown()">
+          <a @click="Btndown()" ref="a1">
             <p>
               <span>
                 {{downText}}
@@ -60,13 +60,12 @@
             </p>
           </a>
         </div>
-          {{id }}
-        
+        {{flag}}
       </div>
       <!-- 主体左边结束 -->
 
       <!-- 主体右边开始 -->
-      <div class="mainRight">
+      <!-- <div class="mainRight">
         <h2>最新新闻</h2>
         <ul class="rightMain">
           <li v-for="item in NewJournalism" :key="item.id">
@@ -83,7 +82,7 @@
           </li>
         </ul>
 
-      </div>
+      </div> -->
 
       <!-- 主体右边结束 -->
     </div>
@@ -118,10 +117,11 @@ export default {
       mainList: [], //主体数据
       textList: [], //主体文本
       NewJournalism: [], //右边新闻数据
-      upText: "", //上一篇 
+      upText: "", //上一篇
       downText: "", //下一篇
-      up:0, //底部导航栏id
-      down:0, //顶部导航栏
+      up: 0, //底部导航栏id
+      down: 0, //顶部导航栏
+      flag: true
     };
   },
   //监听属性 类似于data概念
@@ -134,87 +134,94 @@ export default {
 
       this.$router.go(-1);
     },
+    //上一篇  实现逻辑 更改 id 重新赋值 实现刷新数据
+    BtnUp() {
+      //flag 判断 防止 用户多次点击 出现图片渲染bug
+      if (this.flag) {
+        this.flag = false;
+        this.id = this.id <= 0 ? (this.id = 4) : this.id; //判断是否 是第一篇
+        this.id -= 1;
+        this.mainList = this.dataList[this.id];
+        this.upText = this.NewJournalism[this.id].title;
+        this.upDownFun();
 
-    BtnUp() {//上一篇  实现逻辑 更改 id 重新赋值 实现刷新数据
-      this.id = this.id <= 0 ? (this.id = 4) : this.id; //判断是否 是第一篇
-      this.id -= 1;
-      this.mainList = this.dataList[this.id]; // 主体数据赋值
-      this.upText = this.NewJournalism[this.id].title; // 主体文字赋值
-      this.upDownFun()
+        window.setTimeout(!this.flag, 1000);
+      }
     },
-    Btndown() {//下一篇  实现逻辑 更改 id 重新赋值 实现刷新数据
-      this.id = this.id >= 3 ? (this.id = -1) : this.id; //判断是否 最后一篇
-      this.id += 1;
-      this.mainList = this.dataList[this.id];
-      this.downText = this.NewJournalism[this.id].title;
-      this.upDownFun() 
+    //下一篇  实现逻辑 更改 id 重新赋值 实现刷新数据
+    Btndown() {
+      if (this.flag) {
+        this.flag = false;
+        this.id = this.id >= 3 ? (this.id = -1) : this.id; //判断是否 最后一篇
+        this.id += 1;
+        this.mainList = this.dataList[this.id]; //刷新页面数据
+        this.downText = this.NewJournalism[this.id].title; //刷新 底部导航栏数据
+        this.upDownFun();
+        window.setTimeout(!this.flag, 1000);
+
+      }
     },
 
-    upDownFun(){ //更改 底部 导航栏数据
 
-        if (this.id == 0) {
+    upDownFun() {
+      //更改 底部 导航栏数据
 
-         this.up = 3 , this.down = 1;
+      if (this.id == 0) {
+        (this.up = 3), (this.down = 1);
+      } else if (this.id == 1) {
+        (this.up = 0), (this.down = 2);
+      } else if (this.id == 2) {
+        (this.up = 1), (this.down = 3);
+      } else if (this.id == 3) {
+        (this.up = 2), (this.down = 0);
+      }
+      this.upText = this.NewJournalism[this.up].title;
+      this.downText = this.NewJournalism[this.down].title;
+    },
 
-        } else if (this.id == 1) {
+    // NJournalismApi(){
+    //   let NJournalismApi = "/NewsCenter.json"; //右边新列表地址
+    //   this.axios //请求右边新闻列表
+    //   .get(NJournalismApi)
+    //   .then(response => {
+    //     this.NewJournalism = response.data.data;
+    //    this.upDownFun()
+    //   });
 
-          this.up = 0 , this.down = 2;
+    // },
 
-        } else if (this.id == 2){
+    getup(id) {
+      //请求数据
+      let api = "/News_detail.json";
+      this.$fn(api, id);
+    },
 
-          this.up = 1 , this.down = 3;
-
-        }else if(this.id == 3){
-
-          this.up = 2 , this.down = 0;
-
+    cachae() {
+      let ae = JSON.parse(localStorage.getItem("xw"));
+      if (!ae) {
+        this.getup(this.id);
+        console.log("本地没有数据 重新获取");
+      } else {
+        console.log("可以使用旧数据");
+        if (Date.now() - ae.time > 432 * 100000) {
+          this.getup(this.id);
+        } else {
+          this.dataList = ae.data;
+          this.getup(this.id);
+          this.mainList = this.dataList[this.id];
         }
-        this.upText = this.NewJournalism[this.up].title;
-        this.downText = this.NewJournalism[this.down].title;
-    },
-
-
-
-    getNewsList() {//加载对应 页面
-      //传 id 调
-
-      var api = "/News_detail.json"; //主体新闻地址
-
-      this.axios.get(api).then(response => {
-        this.dataList = response.data.data;
-
-        this.mainList = this.dataList[this.id]; // 主体数据
-
-      });
+      }
     }
-
-
   },
 
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     this.id = parseInt(this.$route.params.id);
-    this.bottomNavId = this.id;
-    
-    var NJournalismApi = "/NewsCenter.json"; //右边新列表地址
-
-    this.getNewsList();
-
-    this.axios //请求右边新闻列表
-      .get(NJournalismApi)
-      .then(response => {
-        this.NewJournalism = response.data.data;
-       
-       this.upDownFun()
-
-
-      });
-
-
+    // this.bottomNavId = this.id;
+    this.cachae();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
-
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -299,8 +306,11 @@ export default {
   border-top: 1px solid #b2aab2;
   padding: 10px;
 }
+.mainBottom a :hover {
+  color: #e3921f;
+}
 .mainBottom a {
-  padding: 15px 20px;
+  margin: 15px 20px;
   cursor: pointer;
 }
 .mainBottom p {

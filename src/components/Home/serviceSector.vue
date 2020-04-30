@@ -1,4 +1,4 @@
-<!-- 服务领域 -->
+<!-- 画廊组件 -->
 <template>
 <div class=''></div>
 </template>
@@ -14,7 +14,7 @@ components: {},
 data() {
 //这里存放数据
 return {
-
+  serviceSector:[]
 };
 },
 //监听属性 类似于data概念
@@ -28,10 +28,26 @@ methods: {
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
 
+   
+
+    // if (!datas) {
+    //   console.log("服务业打印 : 本地没有数据 重新获取");
+    // } else {
+    //   console.log("服务业打印 : 可以使用旧数据");
+    //   if (Date.now() - datas.time > 432 * 100000) {
+    //   } else {
+
+    //     this.serviceSector = datas.serviceSector
+
+    //     console.log(this.serviceSector);
+    //   }
+    // }
+
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {
-
+  // let datas = JSON.parse(localStorage.getItem("sy"));
+  //  console.log(datas.data)
 },
 beforeCreate() {}, //生命周期 - 创建之前
 beforeMount() {}, //生命周期 - 挂载之前
