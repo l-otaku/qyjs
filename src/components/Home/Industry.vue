@@ -95,6 +95,7 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
+  background-color:#f1f1f1;
 }
 .industs_content {
   width: 1200px;

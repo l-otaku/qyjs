@@ -77,7 +77,7 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 }
 .heatmian_mian{
     width:1200px;
-    height: 100px;
+    height: 120px;
     margin: 0 auto;
     position: relative;
 }

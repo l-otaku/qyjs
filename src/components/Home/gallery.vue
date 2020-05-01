@@ -3,17 +3,76 @@
 
 <pl-lazy time="1000">
   <div class='se'>
-  <div class="w" style="height:80px;"></div>
   <div class="PhotFrameTitle w">
-    <h1 style="font-size:48px;color:white">{{viewnum}}</h1>
-    <em style="font-size:22px; margin-bottom:50px;">{{title_els}}</em>
+    <h1 style="font-size:48px;color:white">印度事实画廊</h1><!-- {{viewnum}} -->
+    <em style="font-size:22px; margin-bottom:50px;">Industrial Revolution Business</em><!-- {{title_els}} -->
   </div>
-  <div class="w" style="height:10px;"></div>
+  <div class="w" style="height:30px;"></div>
   <ul class="PhotFrame w">
-    <li v-for="item in gallery" :key="item.id" :data-index="item.id">
+    <!-- <li v-for="item in gallery" :key="item.id" :data-index="item.id">
         <i class="Pmask" style="">{{item.title}}</i>
         <img :src="item.cover" alt="">
+    </li> -->
+
+
+
+
+
+
+    <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g1.jpg" alt="">
     </li>
+     <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g2.jpg" alt="">
+    </li>
+     <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g3.jpg" alt="">
+    </li>
+     <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g4.jpg" alt="">
+    </li>
+     <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g5.jpg" alt="">
+    </li>
+     <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g6.jpg" alt="">
+    </li>
+     <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g7.jpg" alt="">
+    </li>
+     <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g8.jpg" alt="">
+    </li>
+     <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g4.jpg" alt="">
+    </li>
+     <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g1.jpg" alt="">
+    </li>
+     <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g6.jpg" alt="">
+    </li>
+     <li>
+        <i class="Pmask" style="">欢迎来到工业界</i>
+        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g5.jpg" alt="">
+    </li>
+    
+
+
+
+
+
     
   </ul>
   <div class="w" style="height:60px;"></div>
@@ -132,7 +191,7 @@ export default {
 }
 .PhotFrame li:hover i {
   height: 1000px;
-  opacity: 0.8;
+  opacity: 0.9;
   padding-top: 25%;
 }
 
@@ -149,11 +208,11 @@ export default {
   z-index: 10;
   width: 100%;
   height: 0%;
-  background-color: rgba(214, 214, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.8);
   opacity: 0;
   transition: all 0.5s ease-out;
   font-size: 22px;
   color: #eb3d00;
-  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
 }
 </style>

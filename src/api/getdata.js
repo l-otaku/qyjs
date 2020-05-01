@@ -62,29 +62,38 @@ export default function bar(api, id) {
       return
     }
 
-    if (api === '/News_detail.json') {//新闻列表
-      this.dataList = response.data.data //页面数据
+    if (api === '/Regardingour.json') {//关于我们
+      this.dataList = response.data.data[0];
+      this.coverimgs = this.dataList.coverimgs;
+      this.character = this.dataList.character;
+      this.chairman = this.dataList.chairman[0];
+      localStorage.setItem('people', JSON.stringify({ time: Date.now(), data: this.dataList }))
+      return
+    }
+
+    if (api === '/NewsCenter.json') {//新闻中心
+      this.arrs = response.data.data //页面数据
+      localStorage.setItem('News', JSON.stringify({ time: Date.now(), data: this.arrs }))
+      return
+    }
+
+    if (api === '/News_detail.json') {//新闻详情页列表
+      this.dataList =  response.data.data//页面数据
       this.mainList = this.dataList[id]//主体数据
-      this.NewJournalism = this.dataList//底部导航栏 数据
-      this.upDownFun()
+      this.upDownFun()//调用刷新 上下篇函数
       localStorage.setItem('xw', JSON.stringify({ time: Date.now(), data: this.dataList }))
       return
     }
 
-    if(api === '/home_max.json'){
-      
+    if (api === '/home_max.json') {
       let seData = response.data;
-      
       this.gallery = seData.gallery;//画廊数据
       this.title_els = seData.title_els;//画廊数据
       this.viewnum = seData.viewnum//画廊数据
       this.serviceSector = seData.serviceSector //服务业
-      
-
       localStorage.setItem('sy', JSON.stringify({ time: Date.now(), data: seData }))
-
     }
-    
+
 
 
 

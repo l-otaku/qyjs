@@ -35,45 +35,48 @@ export default {
   data() {
     //这里存放数据
     return {
-      arrs: [], //接口数据
-
+      arrs: [] //接口数据
     };
   },
   //监听属性 类似于data概念
-  computed: {
-  
-  },
+  computed: {},
   //监控data中的数据变化
   watch: {},
   //方法集合
   methods: {
-    setnews() {
-      let api = "/NewsCenter.json";
-      this.axios
-        .get(api)
-        .then(response => {
-          if (response.status === 200) {
-
-            this.arrs = response.data.data;
-          }
-        })
-        .catch(function(error) {
-          //  console.log(error+'服务器错误');
-        });
+    News_details_page(id) {
+      this.$router.push({ path: "/index/News/NewsDetails/" + id });
     },
-    News_details_page(id){
-      
-       this.$router.push({ path: "/index/News/NewsDetails/"+ id }); 
 
+    getMianDetaili() {
+      //请求主体数据
+      let api = "/NewsCenter.json";
+      this.$fn(api);
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    
+    let ae = JSON.parse(localStorage.getItem("News"));
+
+    if (!ae) {
+
+      this.getMianDetaili();
+
+      console.log("新闻中心 : 本地没有数据 重新获取");
+    } else {
+      console.log("新闻中心 : 可以使用旧数据");
+      if (Date.now() - ae.time > 432 * 100000) {
+
+        this.getMianDetaili();
+
+      } else {
+
+        this.arrs = ae.data;
+      }
+    }
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    this.setnews() //请求数据
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
@@ -85,8 +88,7 @@ export default {
 };
 </script>
 <style  scoped>
-
-*{
+* {
   box-sizing: border-box;
 }
 .w {
@@ -96,10 +98,10 @@ export default {
 .content {
   width: 1200px;
   height: auto;
-  margin:0  auto;
+  margin: 0 auto;
   overflow: hidden;
 }
-.content li{
+.content li {
   padding: 14px;
   /* padding-top: 14px; */
   float: left;
@@ -107,56 +109,54 @@ export default {
   height: auto;
   cursor: pointer;
 }
-.content li:hover{
+.content li:hover {
   cursor: pointer;
   transform: translateY(-10px);
-  transition: 1s all ; 
+  transition: 1s all;
 }
-.content li:hover h3{
+.content li:hover h3 {
   color: #e69c33;
 }
 
-.content .contentBox{
+.content .contentBox {
   width: 100%;
   height: 159px;
   float: left;
   border: 1px solid #eeeeee;
   border-radius: 5px;
 }
-.content .image{
+.content .image {
   width: 40%;
   float: left;
   vertical-align: middle;
 }
 
-.content img{
+.content img {
   border-radius: 5px;
   width: 100%;
   height: 157px;
   vertical-align: bottom;
-
 }
-.contentMain{
+.contentMain {
   float: left;
   width: 60%;
-  padding:0 17px;
-  
+  padding: 0 17px;
 }
-.contentMain h3{
+.contentMain h3 {
   margin-top: 10px;
-  
-white-space: nowrap;
+
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.contentMain p{
+.contentMain p {
   padding-top: 10px;
 }
-.contentMain p:nth-child(2){
-   overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 2;
-   -webkit-box-orient: vertical;
+.contentMain p:nth-child(2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 </style>

@@ -93,29 +93,43 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    get_people_data() {
+      //请求主体数据
+      let api = "/Regardingour.json";
+      this.$fn(api);
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    // console.log(this.$store.state.msg);
+
+    let ae = JSON.parse(localStorage.getItem("people"));
+
+    if (!ae) {
+      this.get_people_data();
+
+      console.log("关于我们 : 本地没有数据 重新获取");
+
+    } else {
+      console.log("关于我们 : 可以使用旧数据");
+
+      if (Date.now() - ae.time > 432 * 100000) {
+
+        this.get_people_data();
+      } else {
+
+      console.log(ae.data);        
+
+        this.dataList = ae.data
+        this.coverimgs = ae.data.coverimgs;
+        this.character = ae.data.character;
+        this.chairman = ae.data.chairman[0];
+        console.log(this.chairman[0]);
+      }
+    }
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    let api = "/Regardingour.json";
-    this.axios
-      .get(api)
-      .then(response => {
-        // console.log(response.data.data)
-        this.dataList = response.data.data[0];
-        this.coverimgs = response.data.data[0].coverimgs;
-        this.character = response.data.data[0].character;
-        this.chairman = response.data.data[0].chairman[0];
-        // console.log(this.dataList);
-        //  console.log(this.dataList);
-      })
-      .catch(function(error) {
-        console.log(error + "服务器错误");
-      });
-  },
+  mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -255,7 +269,7 @@ export default {
   width: 85px;
 }
 .Fintroduction_icon i {
-  height:53px;
+  height: 53px;
   font-size: 42px;
   transition: all 0.3s;
 }

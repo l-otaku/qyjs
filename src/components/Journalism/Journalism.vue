@@ -1,4 +1,3 @@
-<!--  -->
 <template>
   <div>
     <div class="w" style="height:40px"></div>
@@ -45,7 +44,7 @@
           </div>
         </div>
         <div class="mw" style="height:60px"></div>
-        <div class="mainBottom" ref="btn">
+         <div class="mainBottom" ref="btn">
           <a @click="BtnUp()" ref="a">
             <p>上一篇&nbsp;&nbsp;:&nbsp;&nbsp; 
               <span>{{upText}}</span>
@@ -60,12 +59,11 @@
             </p>
           </a>
         </div>
-        {{flag}}
       </div>
       <!-- 主体左边结束 -->
 
       <!-- 主体右边开始 -->
-      <!-- <div class="mainRight">
+      <div class="mainRight">
         <h2>最新新闻</h2>
         <ul class="rightMain">
           <li v-for="item in NewJournalism" :key="item.id">
@@ -82,7 +80,7 @@
           </li>
         </ul>
 
-      </div> -->
+      </div>
 
       <!-- 主体右边结束 -->
     </div>
@@ -112,7 +110,6 @@ export default {
     return {
       id: "", //页面 ID
       bottomNavId: "",
-      // id: 1, //页面 ID
       dataList: [], //列表数据
       mainList: [], //主体数据
       textList: [], //主体文本
@@ -129,11 +126,6 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    returnTop() {
-      //返回上一层
-
-      this.$router.go(-1);
-    },
     //上一篇  实现逻辑 更改 id 重新赋值 实现刷新数据
     BtnUp() {
       //flag 判断 防止 用户多次点击 出现图片渲染bug
@@ -143,9 +135,8 @@ export default {
         this.id -= 1;
         this.mainList = this.dataList[this.id];
         this.upText = this.NewJournalism[this.id].title;
-        this.upDownFun();
-
-        window.setTimeout(!this.flag, 1000);
+        this.upDownFun(true);
+        
       }
     },
     //下一篇  实现逻辑 更改 id 重新赋值 实现刷新数据
@@ -156,16 +147,12 @@ export default {
         this.id += 1;
         this.mainList = this.dataList[this.id]; //刷新页面数据
         this.downText = this.NewJournalism[this.id].title; //刷新 底部导航栏数据
-        this.upDownFun();
-        window.setTimeout(!this.flag, 1000);
-
+        this.upDownFun(true);//调用刷新底部数据 函数
       }
     },
 
-
-    upDownFun() {
+    upDownFun(flagTrue) {
       //更改 底部 导航栏数据
-
       if (this.id == 0) {
         (this.up = 3), (this.down = 1);
       } else if (this.id == 1) {
@@ -177,48 +164,55 @@ export default {
       }
       this.upText = this.NewJournalism[this.up].title;
       this.downText = this.NewJournalism[this.down].title;
+
+      if(flagTrue){
+
+        setInterval(this.flag = !this.flag,2000)
+         setTimeout(1000,console.log(1111),);
+
+      }
+
+
+    },
+    TakeInverse(){
+      this.flag = !this.flag
     },
 
-    // NJournalismApi(){
-    //   let NJournalismApi = "/NewsCenter.json"; //右边新列表地址
-    //   this.axios //请求右边新闻列表
-    //   .get(NJournalismApi)
-    //   .then(response => {
-    //     this.NewJournalism = response.data.data;
-    //    this.upDownFun()
-    //   });
 
-    // },
-
-    getup(id) {
-      //请求数据
+    getMianDetaili(id) {
+      //请求主体数据
       let api = "/News_detail.json";
       this.$fn(api, id);
-    },
-
-    cachae() {
-      let ae = JSON.parse(localStorage.getItem("xw"));
-      if (!ae) {
-        this.getup(this.id);
-        console.log("本地没有数据 重新获取");
-      } else {
-        console.log("可以使用旧数据");
-        if (Date.now() - ae.time > 432 * 100000) {
-          this.getup(this.id);
-        } else {
-          this.dataList = ae.data;
-          this.getup(this.id);
-          this.mainList = this.dataList[this.id];
-        }
-      }
     }
   },
 
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     this.id = parseInt(this.$route.params.id);
-    // this.bottomNavId = this.id;
-    this.cachae();
+
+    let ae = JSON.parse(localStorage.getItem("xw"));
+
+    if (!ae) {
+      this.getMianDetaili(this.id);
+
+      console.log("新闻详情页 : 本地没有数据 重新获取");
+    } else {
+      console.log("新闻详情页 : 可以使用旧数据");
+
+      if (Date.now() - ae.time > 432 * 100000) {
+        this.getMianDetaili(this.id);
+      } else {
+        this.dataList = ae.data; //页面数据
+        this.mainList = ae.data[this.id]; //主体数据
+      }
+    }
+
+    let datas = JSON.parse(localStorage.getItem("News")); //左边新闻数
+
+    this.NewJournalism = datas.data;
+
+    this.upDownFun(); //调用刷新 上下篇函数
+    
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
