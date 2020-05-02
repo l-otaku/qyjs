@@ -48,16 +48,7 @@ export default {
   methods: {},
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    // if (!datas) {
-    //   console.log("服务业打印 : 本地没有数据 重新获取");
-    // } else {
-    //   console.log("服务业打印 : 可以使用旧数据");
-    //   if (Date.now() - datas.time > 432 * 100000) {
-    //   } else {
-    //     this.serviceSector = datas.serviceSector
-    //     console.log(this.serviceSector);
-    //   }
-    // }
+   
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
@@ -117,6 +108,7 @@ export default {
   height: 600px;
   /* text-align: center; */
   padding-top: 35px;
+  /* margin: 0 auto; */
 }
 .serviceBody li {
   float: left;

@@ -1,5 +1,4 @@
 <template>
-
   <div >
     <!-- 公司简介上 -->
     <div class="w" style="height:80px"></div>
@@ -17,7 +16,6 @@
       </div>
     </div>
     <!-- 公司简介下 -->
-
     <div class="w" style="height:20px"></div>
     <div class="BCompany_Profile w">
       <p>{{dataList.immense}}</p>
@@ -38,17 +36,15 @@
       <ul class="w" >
         <li  v-for="item in character" :key="item.id">
           <div class="Fintroduction_icon" >
-            <i :class="item.icon"></i><!-- el-icon-unlock   el-icon-service el-icon-s-marketing-->
+            <i :class="item.icon"></i>
           </div>
           <div class="Fintroduction_Text">
             <p style="font-size:18px; margin-top: 8px;" :title="item.title">{{item.title}}</p>
             <p :title="item.content">{{item.content}}</p>
           </div>
-         </li>
-        
+        </li>
       </ul>
       <div class="w" style="height:70px"></div>
-
     </div>
     <div class="w" style="height:80px"></div>
     <!-- boss 介绍 -->
@@ -63,14 +59,8 @@
         <p>{{chairman.main}}</p>
       </div>
     </div>
-
     <div class="w" style="height:80px"></div>
-
-
-
-
   </div>
-  
 </template>
 
 <script>
@@ -81,18 +71,12 @@ export default {
   data() {
     //这里存放数据
     return {
-      // dataList:new Array()
-      dataList: [],
+      dataList: [],//全部数据
       coverimgs: [], //产品图片
       character: [], //安全严密 售后服务 产品丰富
       chairman: [] //董事长致辞
     };
   },
-  //监听属性 类似于data概念
-  computed: {},
-  //监控data中的数据变化
-  watch: {},
-  //方法集合
   methods: {
     get_people_data() {
       //请求主体数据
@@ -100,7 +84,6 @@ export default {
       this.$fn(api);
     }
   },
-  //生命周期 - 创建完成（可以访问当前this实例）
   created() {
 
     let ae = JSON.parse(localStorage.getItem("people"));
@@ -109,34 +92,19 @@ export default {
       this.get_people_data();
 
       console.log("关于我们 : 本地没有数据 重新获取");
-
     } else {
       console.log("关于我们 : 可以使用旧数据");
 
       if (Date.now() - ae.time > 432 * 100000) {
-
         this.get_people_data();
       } else {
-
-      console.log(ae.data);        
-
-        this.dataList = ae.data
+        this.dataList = ae.data;
         this.coverimgs = ae.data.coverimgs;
         this.character = ae.data.character;
         this.chairman = ae.data.chairman[0];
-        console.log(this.chairman[0]);
       }
     }
-  },
-  //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
+  }
 };
 </script>
 

@@ -17,7 +17,6 @@
             <li>
               <span>详情</span>
             </li>
-            
           </ul>
         </nav>
         <div class="mw" style="height:30px"></div>
@@ -44,6 +43,7 @@
           </div>
         </div>
         <div class="mw" style="height:60px"></div>
+        <!-- 底部前进后退按钮 -->
          <div class="mainBottom" ref="btn">
           <a @click="BtnUp()" ref="a">
             <p>上一篇&nbsp;&nbsp;:&nbsp;&nbsp; 
@@ -63,7 +63,7 @@
       <!-- 主体左边结束 -->
 
       <!-- 主体右边开始 -->
-      <div class="mainRight">
+      <!-- <div class="mainRight">
         <h2>最新新闻</h2>
         <ul class="rightMain">
           <li v-for="item in NewJournalism" :key="item.id">
@@ -80,7 +80,7 @@
           </li>
         </ul>
 
-      </div>
+      </div> -->
 
       <!-- 主体右边结束 -->
     </div>
@@ -121,8 +121,7 @@ export default {
       flag: true
     };
   },
-  //监听属性 类似于data概念
-  //监控data中的数据变化
+
   watch: {},
   //方法集合
   methods: {
@@ -135,7 +134,7 @@ export default {
         this.id -= 1;
         this.mainList = this.dataList[this.id];
         this.upText = this.NewJournalism[this.id].title;
-        this.upDownFun(true);
+        this.upDownFun();
         
       }
     },
@@ -147,13 +146,13 @@ export default {
         this.id += 1;
         this.mainList = this.dataList[this.id]; //刷新页面数据
         this.downText = this.NewJournalism[this.id].title; //刷新 底部导航栏数据
-        this.upDownFun(true);//调用刷新底部数据 函数
+        this.upDownFun();//调用刷新底部数据 函数
       }
     },
 
-    upDownFun(flagTrue) {
+    upDownFun() {
       //更改 底部 导航栏数据
-      if (this.id == 0) {
+      if (this.id == 0) {//判断 当前id 更改对应 上一篇 下一篇 调用函数刷新数据
         (this.up = 3), (this.down = 1);
       } else if (this.id == 1) {
         (this.up = 0), (this.down = 2);
@@ -162,20 +161,14 @@ export default {
       } else if (this.id == 3) {
         (this.up = 2), (this.down = 0);
       }
+
       this.upText = this.NewJournalism[this.up].title;
       this.downText = this.NewJournalism[this.down].title;
-
-      if(flagTrue){
-
-        setInterval(this.flag = !this.flag,2000)
-         setTimeout(1000,console.log(1111),);
-
-      }
-
-
+      this.TakeInverse() //数据刷新 完更改flag值 防止暴力操作
     },
+
     TakeInverse(){
-      this.flag = !this.flag
+      this.flag = true
     },
 
 
@@ -188,7 +181,7 @@ export default {
 
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.id = parseInt(this.$route.params.id);
+    this.id = parseInt(this.$route.params.id);//当前页面id
 
     let ae = JSON.parse(localStorage.getItem("xw"));
 
@@ -207,22 +200,14 @@ export default {
       }
     }
 
-    let datas = JSON.parse(localStorage.getItem("News")); //左边新闻数
+    let datas = JSON.parse(localStorage.getItem("News")); //底下 上下篇
 
     this.NewJournalism = datas.data;
 
     this.upDownFun(); //调用刷新 上下篇函数
     
   },
-  //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
+
 };
 </script>
 
@@ -241,7 +226,7 @@ export default {
   overflow: hidden;
 }
 .mainLeft {
-  float: left;
+  margin: 0 auto;
   width: 70%;
   margin-bottom: 80px;
 }

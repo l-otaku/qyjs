@@ -1,15 +1,12 @@
-<!--  -->
 <template>
   <div >
     <div class="w" style="height:40px;"></div>
     <ul class="content">
-      
       <li v-for="item in arrs" :key="item.id" @click="News_details_page(item.id-1)" :data-index="item.id-1">
         <div class="contentBox">
           <div class="image">
             <img v-lazy="item.cover" alt="">
           </div>
-
           <div class="contentMain">
             <h3>{{item.title}}</h3>
             <p>{{item.main}}</p>
@@ -17,16 +14,10 @@
           </div>
         </div>
       </li>
-      
-      
-
     </ul>
-    
   <div class="w" style="height:40px;"></div>
-
   </div>
 </template>
-
 <script>
 export default {
   name: "",
@@ -47,7 +38,6 @@ export default {
     News_details_page(id) {
       this.$router.push({ path: "/index/News/NewsDetails/" + id });
     },
-
     getMianDetaili() {
       //请求主体数据
       let api = "/NewsCenter.json";
@@ -57,34 +47,18 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     let ae = JSON.parse(localStorage.getItem("News"));
-
     if (!ae) {
-
       this.getMianDetaili();
-
       console.log("新闻中心 : 本地没有数据 重新获取");
     } else {
       console.log("新闻中心 : 可以使用旧数据");
       if (Date.now() - ae.time > 432 * 100000) {
-
         this.getMianDetaili();
-
       } else {
-
         this.arrs = ae.data;
       }
     }
   },
-  //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-  },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style  scoped>
