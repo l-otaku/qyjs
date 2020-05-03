@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './css/index.css';//全局样式
@@ -31,12 +32,14 @@ Vue.use(vuelazyload,{
   })
 /* eslint-disable no-new */
 
+
 import plLazy from "./components/plLazy/DelayLoading.vue";//延迟加载组件
 Vue.component('pl-lazy', plLazy);
 
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

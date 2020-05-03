@@ -31,7 +31,7 @@ export default {
    let datet = JSON.parse(localStorage.getItem("we"));
        if(!datet){
         //  不存在数据就发送请求
-       console.log('没请求')
+      //  console.log('没请求')
          this.getup();
      }else{
    //  有旧的数据 定义过期时间为12小时  过期再次请求
@@ -39,7 +39,7 @@ export default {
            this.getup();
         } else {
           // 可以使用旧的数据
-          console.log("可以使用旧数据");
+          // console.log("可以使用旧数据");
           this.imgs = datet.data;
         }
      }

@@ -87,11 +87,14 @@ export default function bar(api, id) {
 
     if (api === '/home_max.json') {
       let seData = response.data;
-      this.gallery = seData.gallery;//画廊数据
-      this.title_els = seData.title_els;//画廊数据
-      this.viewnum = seData.viewnum//画廊数据
-      this.serviceSector = seData.serviceSector //服务业
-      localStorage.setItem('sy', JSON.stringify({ time: Date.now(), data: seData }))
+      this.gallery = response.data.data  // 工业界数据
+      this.Industry = response.data.Industry  // 画廊数据
+      this.serviceSector = response.data.serviceSector //服务数据
+      this.$store.commit('gallery',this.gallery)  //把工业界数据存在vuex 里面
+      this.$store.commit('Industry',this.Industry)   //把画廊数据存在vuex 里面
+      this.$store.commit('serviceSector',this.serviceSector)   //把服务数据存在vuex 里面
+      // 存在本地
+      localStorage.setItem('sy', JSON.stringify({ time: Date.now(), data:seData}))
     }
 
 

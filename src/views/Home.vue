@@ -42,7 +42,11 @@ export default {
   },
   data() {
     //这里存放数据
-    return {};
+    return {
+      gallery:[] , //工业界数据
+      Industry:[] , //画廊数据
+      serviceSector:[] , //服务数据
+    };
   },
   //监听属性 类似于data概念
   computed: {},
@@ -54,12 +58,34 @@ export default {
       //请求数据
       let api = "/home_max.json";
       this.$fn(api);
+    },
+     cachae(){
+   let seData = JSON.parse(localStorage.getItem("sy"));
+       if(!seData){
+        //  不存在数据就发送请求
+       console.log('没请求')
+         this.getup();
+     }else{
+   //  有旧的数据 定义过期时间为12小时  过期再次请求
+        if (Date.now() - seData.time > 432*100000) {
+           this.getup();
+        } else {
+          // 可以使用旧的数据
+          console.log("可以使用旧数据");
+         this.$store.commit('gallery',seData.data.data)   //工业界数据
+         this.$store.commit('Industry',seData.data.gallery)  //工业界数据
+         this.$store.commit('serviceSector',seData.data.serviceSector)   //工业界数据
+        }
+     }
     }
+    
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     
-      this.getup();
+      this.cachae();
+      
+    
   }
 }
 

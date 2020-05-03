@@ -4,54 +4,34 @@
     <div class="industs_content">
       <!-- 标题 -->
       <div class="industs_content_title">
-        <p>欢迎来到工业界</p>
+        <p>{{dataList.title}}</p>
         <p>
-          <em>Industrial Revolution Business</em>
+          <em>{{dataList.title_els}}</em>
         </p>
       </div>
       <!-- 图内容-->
       <div class="industs_Picture_content">
         <!-- 左边图片 -->
-        <div class="industs_Picture"></div>
+        <div class="industs_Picture">
+          <img :src="dataList.cover" alt="">
+        </div>
         <!-- 右边文字 -->
         <div class="industs_content_right">
-          <div class="First_content">本文转载于 Impact Studio 建筑类型学设计方法始于欧洲启蒙运动时期，自“二战”后又重新被建筑界所重视，其与历史、文化、场所有着紧密联系。类型学的设计往往涉及类型抽象和场所化两个阶段，在设计中可以辅助我们发掘场所特性、总结建筑类型与元素，从而获取进一步</div>
+          <div class="First_content">{{dataList.favnum}}</div>
           
-          <div class="Second_content">
+          <div class="Second_content" v-for="item in dataList.titleText" :key="item.id">
             <div class="Second_content_ico">
-              <i class="el-icon-setting"></i>
+              <i :class="item.icon"></i>
             </div>
             <div class="Second_content_p">
-              <p>瑞士竞赛平面合集</p>
+              <p>{{item.title}}</p>
             </div>
             <div class="Second_content_p2">
-              <p>本文转载于 Impact Studio 建筑类型学设计方法始于欧洲启蒙运动时期，自“二战”后又重新被建筑界所重视，其与历史、文化、场所有着紧密联系。类型学的设计往往涉及类型抽象和场所化两个阶段，在设计中可以辅助我们发掘场所特性、总结建筑类型与元素，从而获取进一步</p>
+              <p>{{item.text}}</p>
             </div>
           </div>
 
-          <div class="Second_content">
-            <div class="Second_content_ico">
-              <i class="el-icon-headset"></i>
-            </div>
-            <div class="Second_content_p">
-              <p>瑞士竞赛平面合集</p>
-            </div>
-            <div class="Second_content_p2">
-              <p>本文转载于 Impact Studio 建筑类型学设计方法始于欧洲启蒙运动时期，自“二战”后又重新被建筑界所重视，其与历史、文化、场所有着紧密联系。类型学的设计往往涉及类型抽象和场所化两个阶段，在设计中可以辅助我们发掘场所特性、总结建筑类型与元素，从而获取进一步</p>
-            </div>
-          </div>
-
-          <div class="Second_content">
-            <div class="Second_content_ico">
-              <i class="el-icon-office-building"></i>
-            </div>
-            <div class="Second_content_p">
-              <p>瑞士竞赛平面合集</p>
-            </div>
-            <div class="Second_content_p2">
-              <p>本文转载于 Impact Studio 建筑类型学设计方法始于欧洲启蒙运动时期，自“二战”后又重新被建筑界所重视，其与历史、文化、场所有着紧密联系。类型学的设计往往涉及类型抽象和场所化两个阶段，在设计中可以辅助我们发掘场所特性、总结建筑类型与元素，从而获取进一步</p>
-            </div>
-          </div>
+         
       
         </div>
       </div>
@@ -69,7 +49,10 @@ export default {
   components: {},
   data() {
     //这里存放数据
-    return {};
+    return {
+      dataList:this.$store.state.gallery[0],
+      dataList:this.$store.state.gallery[0],
+    };
   },
   //监听属性 类似于data概念
   computed: {},
@@ -80,7 +63,11 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    console.log(this.$store.state.Industrys)
+    // console.log(this.$store.state.Industry)
+    // console.log(this.$store.state.serviceSector)
+  },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -137,6 +124,10 @@ export default {
   float: left;
   position: relative;
   background: rosybrown;
+}
+.industs_Picture img{
+  width: 100%;
+  height: 100%;
 }
 .industs_content_right {
   width: 613px;
