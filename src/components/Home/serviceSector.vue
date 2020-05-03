@@ -1,28 +1,17 @@
-<!-- 画廊组件 -->
 <template>
-
 <div class="service">
-  <h1>服务领域</h1>
-  <em style="font-weight:300;color:#a6a6a6;">SERVICE AREA</em>
+  <!-- 画廊组件 -->
+  <!-- <h1>{{serviceSector.title}}</h1>
+  <em style="font-weight:300;color:#a6a6a6;">{{serviceSector.Subtitle}}</em>
   <span class="serviceBorder"></span>
   <ul class='serviceBody w'>
-    <li>
-          <img src="http://www.czbug.cn/api/Home_icon/up_icon.png" alt="">
-        <h2>建筑工程</h2>
-        <p>房屋建筑工程是指各类房屋建筑及其附属设施和与其配套的线路、管道、设备安装工程及室内外装修工程房屋</p>
-        <p>建筑工程般简称建筑工程,是指新建改建或扩建房屋建筑物和附属构筑物所进行的勘察、规划、设计、施工、安装和维护等各项技术工作及其完成的工程实体</p>
+    <li v-for="item in serviceSector.SmainText" :key="item.id" :data-index="item.id">
+          <img :src="item.icon" alt="">
+        <h2>{{item.title}}</h2>
+        <p>{{item.text}}</p>
     </li>
-    <li>
-        <img src="http://www.czbug.cn/api/Home_icon/hb_icon.png" alt="">
-        <h2>水利工程</h2>
-        <p>水利工程设计水土保持方案,灌溉排涝,河道整治城市防淇水土保持验收水利工程施工监理,水资源论证防洪评价,地质灾害,专业从事水利行业设计</p>
-      </li>
-    <li>
-        <img src="http://www.czbug.cn/api/Home_icon/s_icon.png" alt="">
-        <h2>环保工程施工</h2>
-        <p>环保工程施工环保工程施工主要包括以下几个方面:大气污染防治工程、水污染防治工程、固体废物的处理和利用工程,以及噪声控制工程等。中国的水专项,包括可流,湖泊和部分海洋的污染物治理,污水处理场站,垃极处理场站,还包括防护林工程等等</p>
-      </li>
-  </ul>
+  </ul> -->
+
 </div>
 </template>
 
@@ -37,9 +26,10 @@ export default {
   data() {
     //这里存放数据
     return {
-      serviceSector: []
+      // serviceSector: this.$props.serviceSectorData
     };
   },
+  props:["serviceSectorData"],
   //监听属性 类似于data概念
   computed: {},
   //监控data中的数据变化
@@ -48,20 +38,9 @@ export default {
   methods: {},
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-   
+  //  console.log(this.serviceSector);
   },
-  //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    // let datas = JSON.parse(localStorage.getItem("sy"));
-    //  console.log(datas.data)
-  },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
+
 };
 </script>
 <style  scoped>

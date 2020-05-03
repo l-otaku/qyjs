@@ -1,25 +1,30 @@
 <!-- 工业界组件 -->
 <template>
   <div class="industs">
+
     <div class="industs_content">
       <!-- 标题 -->
       <div class="industs_content_title">
-        <p>{{dataList.title}}</p>
+        <p>{{Industry}}</p>
         <p>
-          <em>{{dataList.title_els}}</em>
+          <!-- <em>{{this.$props.Industry[0].title_els}}</em> -->
         </p>
+      </div>
+       <div class="industs_content_title">
+      
       </div>
       <!-- 图内容-->
       <div class="industs_Picture_content">
         <!-- 左边图片 -->
         <div class="industs_Picture">
-          <img :src="dataList.cover" alt="">
+          <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/welcome.jpg" alt="">
         </div>
+    <!-- {{Industry}} -->
         <!-- 右边文字 -->
         <div class="industs_content_right">
-          <div class="First_content">{{dataList.favnum}}</div>
+          <div class="First_content"></div>
           
-          <div class="Second_content" v-for="item in dataList.titleText" :key="item.id">
+          <!-- <div class="Second_content" v-for="item in this.$props.Industry[0].titleText" :key="item.id">
             <div class="Second_content_ico">
               <i :class="item.icon"></i>
             </div>
@@ -29,13 +34,12 @@
             <div class="Second_content_p2">
               <p>{{item.text}}</p>
             </div>
-          </div>
-
-         
-      
+          </div> -->
         </div>
       </div>
     </div>
+
+
   </div>
 </template>
 
@@ -50,10 +54,10 @@ export default {
   data() {
     //这里存放数据
     return {
-      dataList:this.$store.state.gallery[0],
-      dataList:this.$store.state.gallery[0],
+      // dataList: this.$props.Industry[0]
     };
   },
+  props: ["Industry"],
   //监听属性 类似于data概念
   computed: {},
   //监控data中的数据变化
@@ -64,9 +68,7 @@ export default {
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    console.log(this.$store.state.Industrys)
-    // console.log(this.$store.state.Industry)
-    // console.log(this.$store.state.serviceSector)
+    console.log(this.$props.Industry);
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
@@ -82,7 +84,7 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  background-color:#f1f1f1;
+  background-color: #f1f1f1;
 }
 .industs_content {
   width: 1200px;
@@ -93,7 +95,7 @@ export default {
 }
 .industs_content_title {
   width: 1200px;
-  height: 85px;
+  height: 30px;
   position: relative;
   margin-bottom: 25px;
 }
@@ -125,7 +127,7 @@ export default {
   position: relative;
   background: rosybrown;
 }
-.industs_Picture img{
+.industs_Picture img {
   width: 100%;
   height: 100%;
 }
@@ -169,13 +171,13 @@ export default {
   top: 5px;
 }
 .Second_content_ico i {
-    font-size: 22px;
-    width: 55px;
-    height: 55px;
-    line-height: 55px;
-    background: #f85a40;
-    color: #fff;
-    text-align: center;
+  font-size: 22px;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  background: #f85a40;
+  color: #fff;
+  text-align: center;
 }
 .Second_content_p p {
   width: 445px;

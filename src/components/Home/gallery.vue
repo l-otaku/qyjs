@@ -7,7 +7,7 @@
     <em style="font-size:22px; margin-bottom:50px;">Industrial Revolution Business</em><!-- {{title_els}} -->
   </div>
   <div class="w" style="height:30px;"></div>
-  <ul class="PhotFrame w" id="image" @click="sse()">
+  <ul class="PhotFrame w" id="image" ><!-- @click="sse()" -->
     <!-- <li v-for="item in gallery" :key="item.id" :data-index="item.id">
         <i class="Pmask" style="">{{item.title}}</i>
         <img :src="item.cover" alt="">
@@ -74,33 +74,34 @@
 
     
   </ul>
-  <div class="w" style="height:60px;"></div>
-
-</div>
-
-
- <!-- <div class='se'>
+   <div class='se'>
   <div class="w" style="height:80px;"></div>
   <div class="PhotFrameTitle w">
-    <h1 style="font-size:48px;color:white">{{viewnum}}</h1>
-    <em style="font-size:22px; margin-bottom:50px;">{{title_els}}</em>
+    <!-- <h1 style="font-size:48px;color:white">{{viewnum}}</h1>
+    <em style="font-size:22px; margin-bottom:50px;">{{title_els}}</em> -->
   </div>
   <div class="w" style="height:10px;"></div>
-  <ul class="PhotFrame w">
+ <!--  <ul class="PhotFrame w">
     <li v-for="item in gallery" :key="item.id" :data-index="item.id">
         <i class="Pmask" style="">{{item.title}}</i>
         <img :src="item.cover" alt="">
     </li>
     
-  </ul>
+  </ul> -->
   <div class="w" style="height:60px;"></div>
 
-</div> -->
+</div>
+  <div class="w" style="height:60px;"></div>
+
+</div>
+
+
+
 </template>
 
 <script>
-import Viewer from 'viewerjs';
-import 'viewerjs/dist/viewer.css';
+import Viewer from "viewerjs";
+import "viewerjs/dist/viewer.css";
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 
@@ -112,7 +113,7 @@ export default {
   data() {
     //这里存放数据
     return {
-      gallery: [], //画廊图片
+      // gallery:this.$store.state.gallery, //画廊图片
       title_els: "", //画廊标题
       viewnum: "", //画廊描述
       datas: [],
@@ -140,33 +141,30 @@ export default {
   watch: {},
   //方法集合
   methods: {
-   sse(){
-    
-const viewer = new Viewer(document.getElementById('image'), {
-  inline: true,
-  // button:true, //关闭按钮
-  backdrop:true,
-  modal:true,
-  interval:5000,
-  // backdrop:true,
-  // loading:true,
-  // zIndexInline:100,
-  // inline:true,
-  // container:'body',
-  // toggleOnDblclick:true,
-  viewed() {
-    viewer.zoomTo(1);
-  },
-});
-   }
+    sse() {
+      const viewer = new Viewer(document.getElementById("image"), {
+        inline: true,
+        // button:true, //关闭按钮
+        backdrop: true,
+        modal: true,
+        interval: 5000,
+        // backdrop:true,
+        // loading:true,
+        // zIndexInline:100,
+        // inline:true,
+        // container:'body',
+        // toggleOnDblclick:true,
+        viewed() {
+          viewer.zoomTo(1);
+        }
+      });
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-
-  },
+  created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-   
+    
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前

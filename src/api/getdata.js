@@ -78,26 +78,38 @@ export default function bar(api, id) {
     }
 
     if (api === '/News_detail.json') {//新闻详情页列表
-      this.dataList =  response.data.data//页面数据
+      this.dataList = response.data.data//页面数据
       this.mainList = this.dataList[id]//主体数据
       this.upDownFun()//调用刷新 上下篇函数
       localStorage.setItem('xw', JSON.stringify({ time: Date.now(), data: this.dataList }))
       return
     }
 
-    if (api === '/home_max.json') {
+    if (api === '/home_max.json') {//首页
+      // let seData = response.data
+
+      // this.Industry = seData.data
+      // this.serviceSector = seData.serviceSector
+      // this.gallery = seData.gallery
+
+
+      // console.log(seData.data);
+      // console.log(seData.serviceSector);
+      // console.log(seData.gallery);
+      // localStorage.setItem('sy', JSON.stringify({ time: Date.now(), data: seData }))
+
+
+      // console.log(response.data.data);
+      /* vue x */
       let seData = response.data;
-      this.gallery = response.data.data  // 工业界数据
-      this.Industry = response.data.Industry  // 画廊数据
+      this.Industry = response.data.data  // 工业界数据
       this.serviceSector = response.data.serviceSector //服务数据
-      this.$store.commit('gallery',this.gallery)  //把工业界数据存在vuex 里面
-      this.$store.commit('Industry',this.Industry)   //把画廊数据存在vuex 里面
-      this.$store.commit('serviceSector',this.serviceSector)   //把服务数据存在vuex 里面
+      this.gallery= response.data.gallery  // 画廊数据
       // 存在本地
       localStorage.setItem('sy', JSON.stringify({ time: Date.now(), data:seData}))
     }
 
-
+    // 
 
 
   })

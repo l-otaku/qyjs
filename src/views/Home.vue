@@ -5,10 +5,10 @@
 <lunbo></lunbo>
 
 <!-- 工业界组件 -->
-<Industry></Industry>
+<Industry :Industry="Industry"></Industry>
 
 <!-- 服务业组件 -->
-<serviceSector></serviceSector>
+<serviceSector :serviceSectorData="serviceSector"></serviceSector>
 
 <!-- 画廊组件 -->
 <gallery></gallery>
@@ -43,9 +43,9 @@ export default {
   data() {
     //这里存放数据
     return {
-      gallery:[] , //工业界数据
-      Industry:[] , //画廊数据
+      Industry:[] , //工业界数据
       serviceSector:[] , //服务数据
+      gallery:[] , //画廊数据npm 
     };
   },
   //监听属性 类似于data概念
@@ -65,6 +65,7 @@ export default {
         //  不存在数据就发送请求
        console.log('没请求')
          this.getup();
+         
      }else{
    //  有旧的数据 定义过期时间为12小时  过期再次请求
         if (Date.now() - seData.time > 432*100000) {
@@ -72,9 +73,9 @@ export default {
         } else {
           // 可以使用旧的数据
           console.log("可以使用旧数据");
-         this.$store.commit('gallery',seData.data.data)   //工业界数据
-         this.$store.commit('Industry',seData.data.gallery)  //工业界数据
-         this.$store.commit('serviceSector',seData.data.serviceSector)   //工业界数据
+         this.Industry = seData.data.data //工业界 顶部数据
+         this.serviceSector = seData.data.serviceSector  //工业界服务业数据
+         this.gallery = seData.data.gallery //工业界画廊数据
         }
      }
     }
