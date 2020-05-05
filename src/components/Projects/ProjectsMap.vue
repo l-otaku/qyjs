@@ -112,8 +112,8 @@ export default {
        console.log('没请求')
          this.getup();
      }else{
-   //  有旧的数据 定义过期时间为12小时  过期再次请求
-        if (Date.now() - datwo.time > 432*100000) {
+   //  有旧的数据 定义过期时间为2小时  过期再次请求
+        if (Date.now() - datwo.time > 7200000) {
            this.getup();
         } else {
           // 可以使用旧的数据

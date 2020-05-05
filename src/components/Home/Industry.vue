@@ -1,30 +1,25 @@
 <!-- 工业界组件 -->
-<template>
+<template >
   <div class="industs">
-
-    <div class="industs_content">
+    <div class="industs_content" v-if="Industry">
       <!-- 标题 -->
       <div class="industs_content_title">
-        <p>{{Industry}}</p>
+        <p>{{Industry[0].title}}</p>
         <p>
-          <!-- <em>{{this.$props.Industry[0].title_els}}</em> -->
+          <em>{{Industry[0].title_els}}</em>
         </p>
       </div>
-       <div class="industs_content_title">
-      
-      </div>
+      <div class="industs_content_title"></div>
       <!-- 图内容-->
       <div class="industs_Picture_content">
         <!-- 左边图片 -->
         <div class="industs_Picture">
-          <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/welcome.jpg" alt="">
+          <img :src="Industry[0].cover" alt />
         </div>
-    <!-- {{Industry}} -->
         <!-- 右边文字 -->
         <div class="industs_content_right">
-          <div class="First_content"></div>
-          
-          <!-- <div class="Second_content" v-for="item in this.$props.Industry[0].titleText" :key="item.id">
+          <div class="First_content">{{Industry[0].favnum}}</div>
+          <div class="Second_content" v-for="item in Industry[0].titleText" :key="item.id">
             <div class="Second_content_ico">
               <i :class="item.icon"></i>
             </div>
@@ -34,49 +29,20 @@
             <div class="Second_content_p2">
               <p>{{item.text}}</p>
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
-
-
   </div>
 </template>
 
 <script>
-//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-//例如：import 《组件名称》 from '《组件路径》';
-
 export default {
-  name: "",
-  //import引入的组件需要注入到对象中才能使用
-  components: {},
   data() {
     //这里存放数据
-    return {
-      // dataList: this.$props.Industry[0]
-    };
+    return {};
   },
-  props: ["Industry"],
-  //监听属性 类似于data概念
-  computed: {},
-  //监控data中的数据变化
-  watch: {},
-  //方法集合
-  methods: {},
-  //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
-  //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    console.log(this.$props.Industry);
-  },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
+  props: ["Industry"]
 };
 </script>
 <style  scoped>

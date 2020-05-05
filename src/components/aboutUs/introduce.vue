@@ -95,7 +95,7 @@ export default {
     } else {
       console.log("关于我们 : 可以使用旧数据");
 
-      if (Date.now() - ae.time > 432 * 100000) {
+      if (Date.now() - ae.time > 7200000) {
         this.get_people_data();
       } else {
         this.dataList = ae.data;

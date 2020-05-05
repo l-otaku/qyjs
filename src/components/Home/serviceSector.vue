@@ -1,7 +1,7 @@
 <template>
-<div class="service">
-  <!-- 画廊组件 -->
-  <!-- <h1>{{serviceSector.title}}</h1>
+<div class="service" v-if="serviceSector">
+  <!-- 服务组件 -->
+  <h1>{{serviceSector.title}}</h1>
   <em style="font-weight:300;color:#a6a6a6;">{{serviceSector.Subtitle}}</em>
   <span class="serviceBorder"></span>
   <ul class='serviceBody w'>
@@ -10,37 +10,20 @@
         <h2>{{item.title}}</h2>
         <p>{{item.text}}</p>
     </li>
-  </ul> -->
-
+  </ul>
 </div>
 </template>
 
 <script>
-//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-//例如：import 《组件名称》 from '《组件路径》';
-
 export default {
   name: "",
-  //import引入的组件需要注入到对象中才能使用
   components: {},
   data() {
     //这里存放数据
     return {
-      // serviceSector: this.$props.serviceSectorData
     };
   },
-  props:["serviceSectorData"],
-  //监听属性 类似于data概念
-  computed: {},
-  //监控data中的数据变化
-  watch: {},
-  //方法集合
-  methods: {},
-  //生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-  //  console.log(this.serviceSector);
-  },
-
+  props:["serviceSector"],
 };
 </script>
 <style  scoped>
@@ -53,8 +36,6 @@ export default {
 }
 .service {
   width: 100%;
-  /* background-color: #212b2c; */
-  /* background-color: rgba(33, 43, 44, .9); */
    background: linear-gradient(rgb(34, 42, 44),rgba(0,0,0,0));
   text-align: center;
   padding-top: 32px;
@@ -85,9 +66,7 @@ export default {
   left: 0;
   width: 795px;
   height: 600px;
-  /* text-align: center; */
   padding-top: 35px;
-  /* margin: 0 auto; */
 }
 .serviceBody li {
   float: left;
@@ -105,12 +84,15 @@ export default {
 }
 .serviceBody li:nth-child(1){
   background-color: #293535;
+  cursor: pointer;
 }
 .serviceBody li:nth-child(2){
   background-color: #202c2c;
+  cursor: pointer;
 }
 .serviceBody li:nth-child(3){
   background-color: #1c2828;
+  cursor: pointer;
 }
 .serviceBody i{
   width: 100%;

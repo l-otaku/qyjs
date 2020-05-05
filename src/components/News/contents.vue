@@ -52,7 +52,7 @@ export default {
       console.log("新闻中心 : 本地没有数据 重新获取");
     } else {
       console.log("新闻中心 : 可以使用旧数据");
-      if (Date.now() - ae.time > 432 * 100000) {
+      if (Date.now() - ae.time > 7200000) {
         this.getMianDetaili();
       } else {
         this.arrs = ae.data;

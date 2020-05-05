@@ -1,145 +1,33 @@
-<!-- 服务领域 -->
+<!-- 画廊领域 -->
 <template>
 
   <div class='se' >
   <div class="PhotFrameTitle w">
-    <h1 style="font-size:48px;color:white">印度事实画廊</h1><!-- {{viewnum}} -->
-    <em style="font-size:22px; margin-bottom:50px;">Industrial Revolution Business</em><!-- {{title_els}} -->
+    <h1 style="font-size:48px;color:white">印度事实画廊</h1>
+    <em style="font-size:22px; margin-bottom:50px;">Industrial Revolution Business</em>
   </div>
   <div class="w" style="height:30px;"></div>
   <ul class="PhotFrame w" id="image" ><!-- @click="sse()" -->
-    <!-- <li v-for="item in gallery" :key="item.id" :data-index="item.id">
-        <i class="Pmask" style="">{{item.title}}</i>
-        <img :src="item.cover" alt="">
-    </li> -->
-
-
-
-
-
-
-    <li >
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img  src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g1.jpg" alt="">
-    </li>
-     <li>
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g2.jpg" alt="">
-    </li>
-     <li>
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g3.jpg" alt="">
-    </li>
-     <li>
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g4.jpg" alt="">
-    </li>
-     <li>
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g5.jpg" alt="">
-    </li>
-     <li>
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g6.jpg" alt="">
-    </li>
-     <li>
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g7.jpg" alt="">
-    </li>
-     <li>
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g8.jpg" alt="">
-    </li>
-     <li>
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g4.jpg" alt="">
-    </li>
-     <li>
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g1.jpg" alt="">
-    </li>
-     <li>
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g6.jpg" alt="">
-    </li>
-     <li>
-        <i class="Pmask" style="">欢迎来到工业界</i>
-        <img src="http://demo.qfpffmp.cn/cssthemes6/cpts_1788_csq/images/g5.jpg" alt="">
-    </li>
-    
-
-
-
-
-
-    
-  </ul>
-   <div class='se'>
-  <div class="w" style="height:80px;"></div>
-  <div class="PhotFrameTitle w">
-    <!-- <h1 style="font-size:48px;color:white">{{viewnum}}</h1>
-    <em style="font-size:22px; margin-bottom:50px;">{{title_els}}</em> -->
-  </div>
-  <div class="w" style="height:10px;"></div>
- <!--  <ul class="PhotFrame w">
     <li v-for="item in gallery" :key="item.id" :data-index="item.id">
         <i class="Pmask" style="">{{item.title}}</i>
         <img :src="item.cover" alt="">
     </li>
-    
-  </ul> -->
-  <div class="w" style="height:60px;"></div>
-
+  </ul>
 </div>
-  <div class="w" style="height:60px;"></div>
-
-</div>
-
-
-
 </template>
 
 <script>
 import Viewer from "viewerjs";
 import "viewerjs/dist/viewer.css";
-//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-//例如：import 《组件名称》 from '《组件路径》';
-
-// import '../../../node_modules/_viewerjs@1.5.0@viewerjs/src/css/viewer.css';
 export default {
   name: "",
-  //import引入的组件需要注入到对象中才能使用
   components: {},
   data() {
     //这里存放数据
     return {
-      // gallery:this.$store.state.gallery, //画廊图片
-      title_els: "", //画廊标题
-      viewnum: "", //画廊描述
-      datas: [],
-      time: null
     };
   },
-  //监听属性 类似于data概念
-  computed: {
-    // if (!datas) {
-    //   // this.getup();
-    //   console.log("画廊业打印 : 本地没有数据 重新获取");
-    // } else {
-    //   console.log("画廊业打印 :可以使用旧数据");
-    //   if (Date.now() - datas.time > 432 * 100000) {
-    //     // this.getup();
-    //   } else {
-    //     this.gallery = datas.data.gallery;
-    //     this.title_els = datas.data.title_els;
-    //     this.viewnum = datas.data.viewnum;
-    //     // console.log(this.gallery);
-    //   }
-    // }
-  },
-  //监控data中的数据变化
-  watch: {},
-  //方法集合
+  props:['gallery'],
   methods: {
     sse() {
       const viewer = new Viewer(document.getElementById("image"), {
@@ -160,19 +48,7 @@ export default {
       });
     }
   },
-  //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
-  //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    
-  },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
+
 };
 </script>
 <style  scoped >
@@ -182,6 +58,7 @@ export default {
 }
 .se {
   text-align: center;
+  margin-bottom: 50px;
 }
 .PhotFrameTitle em {
   color: #a6a6a6;
