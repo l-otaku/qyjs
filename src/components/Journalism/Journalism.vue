@@ -192,7 +192,7 @@ export default {
     } else {
       console.log("新闻详情页 : 可以使用旧数据");
 
-      if (Date.now() - ae.time > 432 * 100000) {
+      if (Date.now() - ae.time > 7200000) {
         this.getMianDetaili(this.id);
       } else {
         this.dataList = ae.data; //页面数据
