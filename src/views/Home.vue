@@ -85,8 +85,8 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     
-      this.cachae();
-  
+      // this.cachae();
+      // pl.Math()
     
   }
 }
@@ -99,8 +99,9 @@ export default {
   height: 100%;
   position: relative;
   /* padding-top:20px ; */
-  background: url(https://s-14587.f.cdn-static.cn/14587_15762188939502.jpg?imageMogr2/thumbnail/2285x2000/q/75)
-    repeat-y center bottom;
+  background: url(../assets/Home/background_image.jpg)
+  repeat-y center bottom;
   background-attachment: fixed;
+  background-size: 120%;
 }
 </style>

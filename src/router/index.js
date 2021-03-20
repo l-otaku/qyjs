@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
 import index from '@/views/index.vue'     //导航栏
 import Home from '@/views/Home.vue'       //首页
 import AboutUs from '@/views/AboutUs.vue'    //关于我们
@@ -24,7 +23,11 @@ const routes = [
 
     ],
   },
-  { path: "/index/News/NewsDetails/:id", component: NewsDetails },
+  { 
+    path: "/index/News/NewsDetails/:id",
+    component: NewsDetails,
+    name:'NewsDetails',
+   },
 ];
 
 export default new Router({

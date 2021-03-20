@@ -37,6 +37,23 @@ return {
   width: 100%;
   height: 100%;
   position: relative;
-  background: #fffcfc7a;
 }
+.Projects::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+  url(../assets/Projects/background-Image.jpg) 
+  repeat-y 
+  center 
+  center;
+  background-size: 100%;
+  filter: blur(2px);
+  z-index: -1;
+    background-attachment: fixed;
+}
+
 </style>
